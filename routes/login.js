@@ -1,0 +1,85 @@
+// This file contains routes for Login and Register
+// this has both Get and Post routes
+
+const express = require('express'),
+    router = express.Router();
+
+
+var connection = require('../models/sql');
+
+router.get("/", function(req, res) { res.render("home"); });
+router.get("/login", function(req, res) { res.render("login"); });
+router.get("/register", function(req, res) { res.render("register"); });
+
+var sessionChecker = (req, res, next) => {
+    console.log(req.session.email, req.session.userid, req.session.first_name)
+    if (req.session.email && req.session.userid && req.session.first_name) {
+        next();
+    } else {
+        res.redirect("login");
+    }
+};
+
+
+
+
+
+router.post('/login', function(req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    if (email && password) {
+        connection.query('SELECT * FROM userinfo WHERE email = ? AND pass = ?', [email, password], function(error, results, fields) {
+            if (results && results.length > 0) {
+                req.session.loggedin = true;
+                req.session.email = email;
+                req.session.first_name = results[0].first_name;
+                req.session.userid = results[0].userid;
+                res.redirect("/secret");
+            } else {
+                res.send('Incorrect Username and/or Password!');
+            }
+            res.end();
+        });
+    }
+});
+
+
+
+
+router.post('/register', function(req, res) {
+    var email = req.body.email;
+    connection.query('SELECT * FROM userinfo WHERE email = ?', email, function(err, result, fields) {
+        if (result && result.length > 0) {
+            res.send("user already exists");
+        } else {
+            console.log(req.body.email + " password :" + req.body.password);
+            connection.query('SELECT count(userid) as numb FROM userinfo ', function(err, result, fields) {
+                console.log(result[0].numb);
+                var usercount = parseInt((result[0].numb) ? result[0].numb : 0);
+                var post = {
+                    userid: "U" + (usercount + 1),
+                    pass: req.body.password,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    phone: parseInt(req.body.phone),
+                    passport_number: parseInt(req.body.passport_number),
+                    dob: req.body.date,
+                    usertype: "crew"
+                };
+                console.log(post);
+                connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
+                    if (err) throw err;
+                    console.log("new user created");
+                    res.send("user created");
+                });
+            });
+        };
+    });
+});
+
+
+
+
+
+module.exports = router;

@@ -1,0 +1,15 @@
+use flightdatabase;
+
+Create table userinfo(
+userid varchar(5) primary key unique, 
+pass varchar(40) not null,
+first_name varchar(20) not null,
+last_name varchar(20) not null,
+email varchar(30) not null,
+phone bigint(10) not null,
+passport_number bigint(15) not null,
+dob date not null, 
+usertype varchar(5),
+constraint CK_TYPE1 check(usertype IN('user','admin','crew')),
+constraint Email_Check check (email like ('%@%.%'))
+);
