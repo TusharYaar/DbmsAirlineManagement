@@ -41,8 +41,7 @@ router.post("/addairport", checkAdmin, function(req, res) {
 
 });
 
-
-router.get("/showairport", checkAdmin, function(req, res) {
+router.get("/showairports", checkAdmin, function(req, res) {
     connection.query('SELECT * FROM airport', function(err, result, fields) {
         // res.render("./admin/showairport" { data: result });
         res.json(result);
