@@ -7,18 +7,30 @@ const express = require('express'),
 
 var connection = require('../models/sql');
 
-router.get("/", function(req, res) { res.render("home"); });
-router.get("/login", function(req, res) { res.render("login"); });
-router.get("/register", function(req, res) { res.render("register"); });
-
 var sessionChecker = (req, res, next) => {
-    console.log(req.session.email, req.session.userid, req.session.first_name)
+    // console.log(req.session.email, req.session.userid, req.session.first_name)
     if (req.session.email && req.session.userid && req.session.first_name) {
         next();
     } else {
         res.redirect("login");
     }
 };
+
+
+router.get("/", function(req, res) { res.render("home"); });
+router.get("/login", function(req, res) { res.render("login"); });
+router.get("/register", function(req, res) { res.render("register"); });
+router.get("/dashboard", sessionChecker, function(req, res) {
+    if (req.session.usertype == "admin") {
+        res.send("You Are on the Admin Dashboard!");
+    } else if (req.session.usertype == "crew") {
+        res.send("You are on the crew Dashboard!");
+    } else if (req.session.usertype == "user") {
+        res.render("user/dashboard");
+    }
+});
+
+
 
 
 

@@ -10,9 +10,10 @@ app.use(bodyParser.json());
 
 var PORT = process.env.PORT || 3000;
 
+var connection = require("./models/sql");
 
 var loginRoute = require("./routes/login"),
-    connection = require("./models/sql");
+    adminRoute = require("./routes/adminroutes");
 
 app.use(session({
     secret: 'this is a random secret key for testing the user login',
@@ -24,6 +25,7 @@ app.use(session({
 //          ROUTESSSS REQUIRED
 // ====================================
 app.use(loginRoute);
+app.use(adminRoute);
 
 
 
