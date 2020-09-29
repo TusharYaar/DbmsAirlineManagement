@@ -26,7 +26,7 @@ router.get("/dashboard", sessionChecker, function(req, res) {
     } else if (req.session.usertype == "crew") {
         res.send("You are on the crew Dashboard!");
     } else if (req.session.usertype == "user") {
-        res.render("user/dashboard");
+        res.render("./user/userdashboard");
     }
 });
 
@@ -76,7 +76,7 @@ router.post('/register', function(req, res) {
                     phone: parseInt(req.body.phone),
                     passport_number: parseInt(req.body.passport_number),
                     dob: req.body.date,
-                    usertype: "user"
+                    usertype: "admin"
                 };
                 connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
                     if (err) throw err;
