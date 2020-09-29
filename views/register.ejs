@@ -1,17 +1,18 @@
-<form action="/register" method="post">
+<%- include('partials/header') %>
+    <form action="/register" method="post">
 
-    First Name<input required type="text" name="first_name" id="first_name"> last_name
-    <input required type="text" name="last_name" id="last_name">
-    <hr> email <input required type="email" name="email" id="email">
-    <hr> password <input required type="password" name="password" id="password">
-    <hr>phone-number <input required type="number" name="phone" id="phone">
-    <hr> passPort Number <input required type="number" name="passport_number" id="passport">
-    <hr> DOB <input required type="date" name="date" id="date" format="dd-MMM-yyyy">
+        First Name<input required type="text" name="first_name" id="first_name"> last_name
+        <input required type="text" name="last_name" id="last_name">
+        <hr> email <input required type="email" name="email" id="email">
+        <hr> password <input required type="password" name="password" id="password">
+        <hr>phone-number <input required type="number" name="phone" id="phone">
+        <hr> passPort Number <input required type="number" name="passport_number" id="passport">
+        <hr> DOB <input required type="date" name="date" id="date" format="dd-MMM-yyyy">
+        <hr>
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <br>
     <hr>
-    <button type="submit">Submit</button>
-</form>
-<br>
-<br>
-<hr>
 
-<p>Alreadt a User ?? <a href="/login">Click here </a> to login.</p>
+    <p>Alreadt a User ?? <a href="/login">Click here </a> to login.</p>
