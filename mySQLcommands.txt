@@ -13,3 +13,28 @@ usertype varchar(5),
 constraint CK_TYPE1 check(usertype IN('user','admin','crew')),
 constraint Email_Check check (email like ('%@%.%'))
 );
+
+
+
+create table airport (
+airport_id varchar(5) primary key unique ,
+airport_name varchar(35),
+airport_city varchar(35),
+airport_state varchar(35),
+airport_short varchar(4))
+
+
+
+//if making again change to flight id
+CREATE TABLE flight(
+flight_number varchar(5) PRIMARY KEY unique,
+departure varchar(7),
+destination varchar(7),
+arrival_date date,
+arrival_time TIME,
+departure_date date,
+departure_time TIME,
+price int(7),
+constraint fk_departure foreign key(departure) references airport(airport_id),
+constraint fk_destination foreign key(destination) references airport(airport_id)
+);

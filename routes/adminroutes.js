@@ -3,16 +3,8 @@ var router = express.Router();
 var connection = require('../models/sql');
 
 
-var sessionChecker = (req, res, next) => {
-    // console.log(req.session.email, req.session.userid, req.session.first_name)
-    if (req.session.email && req.session.userid && req.session.first_name) {
-        next();
-    } else {
-        res.redirect("login");
-    }
-};
 var checkAdmin = (req, res, next) => {
-    if (req.session.usertype = "admin") {
+    if (req.session.userid && req.session.usertype == "admin") {
         next();
     } else {
         res.redirect("Dashboard");
@@ -20,26 +12,13 @@ var checkAdmin = (req, res, next) => {
 };
 
 
-router.get("/addairport", sessionChecker, checkAdmin, function(req, res) { res.send("this is an admin exclusive page") });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+router.get("/showairport", function(req, res) {
+    connection.query('SELECT * FROM airport', function(err, result, fields) {
+        console.log("Result =: " + result);
+        // res.render("./admin/showairport" { data: result });
+        res.json(result);
+    });
+});
 
 
 module.exports = router;

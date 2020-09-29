@@ -13,7 +13,9 @@ var PORT = process.env.PORT || 3000;
 var connection = require("./models/sql");
 
 var loginRoute = require("./routes/login"),
-    adminRoute = require("./routes/adminroutes");
+    adminRoute = require("./routes/adminroutes"),
+    airportRoute = require("./routes/airportroutes"),
+    flightRoute = require("./routes/flightroutes");
 
 app.use(session({
     secret: 'this is a random secret key for testing the user login',
@@ -26,7 +28,8 @@ app.use(session({
 // ====================================
 app.use(loginRoute);
 app.use(adminRoute);
-
+app.use(airportRoute);
+app.use(flightRoute);
 
 
 

@@ -1,0 +1,42 @@
+const express = require('express'),
+    router = express.Router();
+
+
+var connection = require('../models/sql');
+
+
+
+var checkAdmin = (req, res, next) => {
+    if (req.session.userid && req.session.usertype == "admin") {
+        next();
+    } else {
+        res.redirect("Dashboard");
+    }
+};
+
+router.get("/addairport", checkAdmin, function(req, res) {
+    res.render("./admin/addairport");
+
+});
+
+router.post("/addairport", checkAdmin, function(req, res) {
+    connection.query('SELECT count(*) as numb FROM airport', function(err, result, fields) {
+        var count = parseInt((result[0].numb) ? result[0].numb : 0);
+        var post = {
+            airport_id: "A" + (count + 1),
+            airport_name: req.body.airport_name,
+            airport_city: req.body.airport_city,
+            airport_state: req.body.airport_state,
+            airport_short: req.body.airport_short.toUpperCase()
+        };
+        connection.query('INSERT INTO airport SET ?', post, function(err, result, fields) {
+            if (err) throw err;
+            res.send("Airport created Now Goto <a href='/dashboard'> dashboard</a>");
+        });
+    });
+
+});
+
+
+
+module.exports = router;
