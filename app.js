@@ -61,6 +61,11 @@ app.get("/logout", sessionChecker, function(req, res) {
 });
 
 
+// ! Enable this when using Heroku
+// setInterval(function() {connection.query('SELECT 1');}, 5000);
+
+
+
 
 // ===========SEE at LAST===========
 app.get("*", function(req, res) {
