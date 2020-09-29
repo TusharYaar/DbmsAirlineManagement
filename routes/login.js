@@ -65,7 +65,7 @@ router.post('/register', function(req, res) {
                     phone: parseInt(req.body.phone),
                     passport_number: parseInt(req.body.passport_number),
                     dob: req.body.date,
-                    usertype: "crew"
+                    usertype: "admin"
                 };
                 console.log(post);
                 connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
