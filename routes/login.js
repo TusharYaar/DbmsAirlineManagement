@@ -34,9 +34,10 @@ router.post('/login', function(req, res) {
                 req.session.email = email;
                 req.session.first_name = results[0].first_name;
                 req.session.userid = results[0].userid;
+                req.session.usertype = results[0].usertype;
                 res.redirect("/secret");
             } else {
-                res.send('Incorrect Username and/or Password!');
+                res.send('Incorrect Username and/or Password! <a href="/login"> Try again </a>');
             }
             res.end();
         });
@@ -50,11 +51,9 @@ router.post('/register', function(req, res) {
     var email = req.body.email;
     connection.query('SELECT * FROM userinfo WHERE email = ?', email, function(err, result, fields) {
         if (result && result.length > 0) {
-            res.send("user already exists");
+            res.send("user already exists <a href='/register'> Try again<a>");
         } else {
-            console.log(req.body.email + " password :" + req.body.password);
             connection.query('SELECT count(userid) as numb FROM userinfo ', function(err, result, fields) {
-                console.log(result[0].numb);
                 var usercount = parseInt((result[0].numb) ? result[0].numb : 0);
                 var post = {
                     userid: "U" + (usercount + 1),
@@ -65,13 +64,11 @@ router.post('/register', function(req, res) {
                     phone: parseInt(req.body.phone),
                     passport_number: parseInt(req.body.passport_number),
                     dob: req.body.date,
-                    usertype: "admin"
+                    usertype: "user"
                 };
-                console.log(post);
                 connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
                     if (err) throw err;
-                    console.log("new user created");
-                    res.send("user created");
+                    res.send("user created Now Goto <a href='/login'> Login</a>");
                 });
             });
         };

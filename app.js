@@ -32,7 +32,7 @@ app.use(loginRoute);
 //  MISLANEOUS FUNCTIONS
 // ================================
 var sessionChecker = (req, res, next) => {
-    if (req.session.email && req.session.userid && req.session.first_name) {
+    if (req.session.email && req.session.userid && req.session.first_name && req.session.usertype) {
         next();
     } else {
         res.redirect("login");
@@ -52,13 +52,12 @@ var sessionChecker = (req, res, next) => {
 // ========================
 
 app.get("/secret", sessionChecker, function(req, res) {
-    res.render("home");
+    res.render("secret", { user: req.session.first_name, userid: req.session.userid, email: req.session.email, type: req.session.usertype });
 });
 
 app.get("/logout", sessionChecker, function(req, res) {
-    console.log('Destroying session');
     req.session.destroy();
-    res.send("You have been logged out");
+    res.send("You have been logged out.<br> <a href='/'>Click Here</a> to goto home page ");
 });
 
 
