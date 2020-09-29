@@ -3,15 +3,24 @@
 
 
     <form action="/addflight" method="post">
-        Select Departure Airport <select name="departure" id="departure">
+        Select Departure Airport <select name="departure" id="departure" required>
        <% airport.forEach(function(airport){ %>
         <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
       <% });%>
-       </select> Select Destination Airport <select name="Destination" id="Destination">
+       </select>
+        <br> Set Departure Date :<input type="date" name="departure_date" id="departure_date" required>
+        <br> Set Departure Time :<input type="time" format="hh:mm:ss" name="departure_time" required>
+        <br>
+        <hr> Select Destination Airport <select name="destination" id="destination" required>
         <% airport.forEach(function(airport){ %>
          <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
        <% });%>
     </select>
-
+        <br> Set Arrival Date :<input type="date" name="arrival_date" id="arrival_date" required>
+        <br> Set Arrival Time :<input type="time" format="hh:mm:ss" name="arrival_time" required>
+        <br>
+        <hr> price per seat :<input type="number" name="price" id="price" required>
         <button type="submit">Submit</button>
     </form>
+
+    Goto <a href="/dashboard"> Dashboard</a>

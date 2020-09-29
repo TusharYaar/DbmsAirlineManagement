@@ -25,11 +25,11 @@ router.get("/register", function(req, res) { res.render("register"); });
 
 router.get("/dashboard", sessionChecker, function(req, res) {
     if (req.session.usertype == "admin") {
-        res.render("./admin/admindashboard");
+        res.render("./admin/admindashboard", { message: null });
     } else if (req.session.usertype == "crew") {
-        res.send("You are on the crew Dashboard!");
+        res.send("./crew/crewdashboard", { message: null });
     } else if (req.session.usertype == "user") {
-        res.render("./user/userdashboard");
+        res.render("./user/userdashboard", { message: null });
     }
 });
 
@@ -79,7 +79,7 @@ router.post('/register', function(req, res) {
                     phone: parseInt(req.body.phone),
                     passport_number: parseInt(req.body.passport_number),
                     dob: req.body.date,
-                    usertype: "admin"
+                    usertype: "user"
                 };
                 connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
                     if (err) throw err;

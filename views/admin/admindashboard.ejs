@@ -1,6 +1,19 @@
 <%- include('../partials/header') %>
-    <p>This is the Admin Dashboard </p>
-    Goto <a href="/addairport">Add An Airport </a>
-    <hr> Goto <a href="/showairport"> Show Existing Airports </a>
-    <hr> Goto <a href="/addflight"> Add A Flight </a>
-    <hr> Goto <a href="/showflight"> Show Existing Flights </a>
+    <p>This is the
+        <h2>Admin</h2> Dashboard </p>
+
+
+    <% if(message!=null) { %>
+
+        <p>
+            <%= message %>
+        </p>
+
+        <%}  %>
+            <br>
+            <br>
+            <br> Goto <a href="/addairport">Add An Airport </a>
+            <hr> Goto <a href="/showairport"> Show Existing Airports </a>
+            <hr> Goto <a href="/addflight"> Add A Flight </a>
+            <hr> Goto <a href="/showflight"> Show Existing Flights </a>
+            <hr> Goto <a href="/addcrew">add a a crew</a>
