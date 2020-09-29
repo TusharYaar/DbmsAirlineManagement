@@ -15,7 +15,7 @@ var db_config_local = {
 var connection;
 
 function handleDisconnect() {
-    connection = mysql.createConnection(db_config_local);
+    connection = mysql.createConnection(db_config);
     connection.connect(function(err) { // The server is either down
         if (err) { // or restarting (takes a while sometimes).
             console.log('error when connecting to db:', err);
