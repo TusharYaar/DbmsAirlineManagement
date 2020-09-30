@@ -15,7 +15,8 @@ var connection = require("./models/sql");
 var loginRoute = require("./routes/login"),
     adminRoute = require("./routes/adminroutes"),
     airportRoute = require("./routes/airportroutes"),
-    flightRoute = require("./routes/flightroutes");
+    flightRoute = require("./routes/flightroutes"),
+    userRoute = require("./routes/userroutes");
 
 app.use(session({
     secret: 'this is a random secret key for testing the user login',
@@ -30,7 +31,7 @@ app.use(loginRoute);
 app.use(adminRoute);
 app.use(airportRoute);
 app.use(flightRoute);
-
+app.use(userRoute);
 
 
 // ======================

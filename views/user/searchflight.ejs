@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+    <form action="/searchflight" method="post">
+        FROM:<select name="departure" id="departure" required>
+            <% airport.forEach(function(airport){ %>
+             <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
+           <% });%>
+            </select>
+
+        <br> TO: Select Departure Airport <select name="destination" id="departure" required>
+       <% airport.forEach(function(airport){ %>
+        <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
+      <% });%>
+       </select>
+        <br> date: <input type="date" name="date" id="date" required>
+        <hr>
+        <button type="submit">Search Flights</button>
+    </form>
