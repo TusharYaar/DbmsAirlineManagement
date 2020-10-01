@@ -33,7 +33,6 @@ app.use(airportRoute);
 app.use(flightRoute);
 app.use(userRoute);
 
-
 // ======================
 //  MISLANEOUS FUNCTIONS
 // ================================
@@ -66,12 +65,49 @@ app.get("/logout", sessionChecker, function(req, res) {
     res.send("You have been logged out.<br> <a href='/'>Click Here</a> to goto home page ");
 });
 
+app.get("/addadmin", function(req, res) {
+    if (PORT == 3000)
+        res.render("./admin/addadmin");
+    else {
+        console.log("Acceses from Net");
+        res.send("You are not authorized to add admin from this port");
+    }
+});
 
-// ! Enable this when using Heroku
-// setInterval(function() {connection.query('SELECT 1');}, 5000);
-
-
-
+app.post("/addadmin", function(req, res) {
+    if (PORT != 3000) {
+        res.send("You are not authorized to add admin from this port");
+    }
+    var email = req.body.email;
+    connection.query('SELECT * FROM userinfo WHERE email = ?', email, function(err, result, fields) {
+        if (result && result.length > 0) {
+            res.send("User with this email already exists!! Goto <a href='/login'>login</a>");
+        } else {
+            connection.query('SELECT count(userid) as numb FROM userinfo ', function(err, result, fields) {
+                var usercount = parseInt((result[0].numb) ? result[0].numb : 0);
+                var post = {
+                    userid: "U" + (usercount + 1),
+                    pass: req.body.password,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    phone: parseInt(req.body.phone),
+                    passport_number: (req.body.passport_number).toUpperCase(),
+                    dob: req.body.date,
+                    usertype: "admin",
+                    occupation: "admin"
+                };
+                connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
+                    if (err) {
+                        console.log(err);
+                        res.send("Admin Account NOT Created!! Goto <a href='/login'>login</a>");
+                    }
+                    res.send("Admin Account Created!! Goto <a href='/login'>login</a>");
+                });
+            });
+        };
+    });
+});
 
 // ===========SEE at LAST===========
 app.get("*", function(req, res) {
