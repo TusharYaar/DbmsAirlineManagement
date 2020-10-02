@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="styles/searchflight.css">
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">
-        <img src="images/FullLogo.png" class="" width="200" height="auto" alt="" loading="lazy">
+        <img src="images/FullLogo.png" class="animate__animated animate__swing" width="200" height="auto" alt="" loading="lazy">
     </a>
     <% if (message===null) {%> 
     <span class="navbar-text"><a href="login">Login</a> <a href="/register" class="mx-4"> Register </a> </span>
@@ -15,47 +15,45 @@
 <div class="container-fluid">
         <form action="/searchflight" method="POST">
             <div class=" searchBox row ">
-                <div class=" col-6 col-sm-4"> <label for="departure">
-                    From:</label> <select name="departure" id=" departure" class=" form-control" required>
+                <div class=" col-4"> <label for="departure">
+                    FROM:</label> <select name="departure" id=" departure" class=" form-control" required>
                         <% airport.forEach(function(airport){ %>
                             <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
                           <% });%>     
         </select>
                 </div>
-                <div class=" col-6 col-sm-4"> <label for=" destination ">To:</label>
+                <div class=" col-4"> <label for=" destination ">TO:</label>
                     <select name="destination" id=" destination" class=" form-control" required>
                         <% airport.forEach(function(airport){ %>
                             <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
                           <% });%>
         </select>
                 </div>
-                <div class="col-6 col-sm-4 col-md-2">
+                <div class=" col-2">
                     <label for=" departure_date " > Departure Date:</label>
-                   <input class="form-control" type="date" name="date" id="departure_date" min="2020-09-30" required>
+                   <input class="form-control" type="date" name="date" id="date" min="2020-09-30" required>
     </div>
-    <div class="col-6 col-sm-3 col-md-2">
+    <div class="col-2">
         <button type="submit" class="btn btn-primary" id="submitButton" >Search the Flight</button>
     </div>
     </div>
     </form>
-
-    <div class="col-12 col-md-5 animate__animated animate__fadeIn" id="tagLine">
-        <p>Grab your Seat and Explore</p>
-    </div>
 </div>
 
-<!-- <script>
-  date = new Date();
-  date = date.toISOString();
-date=    date.substring(0,10);
-  console.log(date);
-   document.getElementById("departure_date").min = date;
 
 
+    <%  flight.forEach(function(flight){ %>
+        <div>
+            Flight Id:
+            <%= flight.flight_number%>
+                <br> From:
+                <%= flight.dep_name %>
+                    <br> To:
+                    <%= flight.des_name %>
 
-</script> -->
+        </div>
 
-<%- include('../partials/footer') %>
+        <%}) %>
 
 
-
+        <%- include('../partials/footer') %>

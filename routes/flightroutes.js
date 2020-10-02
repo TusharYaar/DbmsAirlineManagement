@@ -23,8 +23,6 @@ router.get("/addflight", checkAdmin, function(req, res) {
         res.render("./admin/addflight", { airport: result });
     });
 });
-
-//!Add Check Admin
 router.post("/addflight", checkAdmin, function(req, res) {
     console.log(req.body);
     connection.query('SELECT count(*) as numb FROM flight', function(err, result, fields) {

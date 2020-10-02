@@ -1,7 +1,4 @@
 <%- include('../partials/header') %>
-    <p>This is the Add Flights page</p>
-
-
     <form action="/addflight" method="post">
         Select Departure Airport <select name="departure" id="departure" required>
        <% airport.forEach(function(airport){ %>

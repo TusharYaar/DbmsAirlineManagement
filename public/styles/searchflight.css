@@ -1,0 +1,27 @@
+.navbar {
+    opacity: 85%;
+}
+
+body {
+    padding-top: 100px;
+    background-image: url(../images/HomeBackground-min.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+label {
+    font-size: 1.5rem;
+}
+.searchBox {
+    width: 100%;
+
+}
+#submitButton {
+    margin-top:2.7rem;
+}
+#tagLine{
+    margin: 30px 10px 10px auto;
+    font-weight: 600;
+    font-size: 5rem;
+
+}

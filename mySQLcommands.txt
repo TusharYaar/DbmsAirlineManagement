@@ -21,8 +21,7 @@ create table airport (
 airport_id varchar(5) primary key unique ,
 airport_name varchar(35),
 airport_city varchar(35),
-airport_state varchar(35),
-airport_short varchar(4))
+airport_state varchar(35))
 
 CREATE TABLE flight(
 flight_number varchar(5) PRIMARY KEY unique,
@@ -36,3 +35,13 @@ price int(7),
 constraint fk_departure foreign key(departure) references airport(airport_id),
 constraint fk_destination foreign key(destination) references airport(airport_id)
 );
+
+
+
+select flight_number,departure_date,departure_time,arrival_date,arrival_time,
+ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airport_city as des_city, ap_des.airport_short as des_short,
+ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city, ap_dep.airport_short as dep_short 
+from flight 
+join airport as ap_des on flight.departure = ap_des.airport_id 
+join airport as ap_dep on flight.destination = ap_dep.airport_id
+;

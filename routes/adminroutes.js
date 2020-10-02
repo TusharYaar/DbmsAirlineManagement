@@ -36,9 +36,10 @@ router.post("/addcrew", checkAdmin, function(req, res) {
                     last_name: req.body.last_name,
                     email: req.body.email,
                     phone: parseInt(req.body.phone),
-                    passport_number: parseInt(req.body.passport_number),
+                    passport_number: req.body.passport_number,
                     dob: req.body.date,
-                    usertype: "crew"
+                    usertype: "crew",
+                    occupation: req.body.occupation
                 };
                 connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
                     if (err) {

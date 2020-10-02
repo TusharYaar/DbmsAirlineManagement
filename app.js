@@ -3,7 +3,7 @@ const session = require('express-session'),
     express = require("express"),
     app = express();
 
-
+app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -37,7 +37,7 @@ app.use(userRoute);
 //  MISLANEOUS FUNCTIONS
 // ================================
 var sessionChecker = (req, res, next) => {
-    if (req.session.email && req.session.userid && req.session.first_name && req.session.usertype) {
+    if (req.session.email && req.session.userid) {
         next();
     } else {
         res.redirect("login");
