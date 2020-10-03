@@ -24,8 +24,7 @@ router.post("/addairport", checkAdmin, function(req, res) {
             airport_id: "A" + (count + 1),
             airport_name: req.body.airport_name.toLowerCase(),
             airport_city: req.body.airport_city.toLowerCase(),
-            airport_state: req.body.airport_state.toLowerCase(),
-            airport_short: req.body.airport_short.toUpperCase()
+            airport_state: req.body.airport_state.toLowerCase()
         };
         connection.query('INSERT INTO airport SET ?', post, function(err, result, fields) {
             if (err) {

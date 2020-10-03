@@ -21,7 +21,7 @@ create table airport (
 airport_id varchar(5) primary key unique ,
 airport_name varchar(35),
 airport_city varchar(35),
-airport_state varchar(35))
+airport_state varchar(35));
 
 CREATE TABLE flight(
 flight_number varchar(5) PRIMARY KEY unique,
