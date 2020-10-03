@@ -8,7 +8,7 @@
         <input required type="text" name="last_name" id="last_name" maxlength="20">
         <hr> email <input required type="email" name="email" id="email" maxlength="40">
         <hr> password <input required type="password" name="password" id="password" maxlength="40">
-        <hr>phone-number <input required type="number" name="phone" id="phone" maxlength="10">
+        <hr>phone-number <input required type="number" name="phone" id="phone" max="9999999999">
         <hr> passPort Number <input required type="text" name="passport_number" id="passport" maxlength="10">
         <hr> DOB <input required type="date" name="date" id="date" format="dd-MMM-yyyy">
         <hr>
@@ -25,4 +25,4 @@
 
     <p><a href="/login">Click here </a> to Go to Dashboard.</p>
 
-    <%- include('../partials/footer)' %>
+    <%- include('../partials/footer') %>

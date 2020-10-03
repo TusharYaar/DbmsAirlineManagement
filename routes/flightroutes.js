@@ -18,7 +18,7 @@ var checkAdmin = (req, res, next) => {
     }
 };
 
-router.get("/addflight", function(req, res) {
+router.get("/addflight",checkAdmin, function(req, res) {
     connection.query('SELECT * FROM airport', function(err, result, fields) {
         connection.query("SELECT * from userinfo where usertype = 'crew'", function(err, crew, fields){
             res.render("./admin/addflight", { airport: result, crew: crew});
@@ -26,7 +26,9 @@ router.get("/addflight", function(req, res) {
 
     });
 });
-router.post("/addflight", checkAdmin, function(req, res) {
+router.post("/addflight",checkAdmin, function(req, res) {
+    // console.log(req.body);
+    // res.send("reached");
     connection.query('SELECT count(*) as numb FROM flight', function(err, result, fields) {
         var count = parseInt((result[0].numb) ? result[0].numb : 0);
         var post = {
@@ -44,7 +46,23 @@ router.post("/addflight", checkAdmin, function(req, res) {
                 console.log(err);
                 res.render("./admin/admindashboard", { message: "FLight Cannot be created. Server Error" });
             } else {
-                res.render("./admin/admindashboard", { message: "Flight Created Successfully Flight number: " + post.flight_number });
+                var crew = [[post.flight_number,req.body.pilot],[post.flight_number,req.body.air_hostess],[post.flight_number, req.body.technician]];
+                connection.query('INSERT INTO flightcrew (flight_number, crew_id) VALUES ?',[crew] ,function(err, crewresult, fields) {
+                    if(err) {console.log(err);
+                    connection.query('DELETE FROM flight WHERE flight_number = ?', post.flight_number,function(err, result, fields){
+                        if (err) {
+                            console.log(err);
+                            res.send("Flight Created but cannot be deleted");                            
+                        }
+                    });
+                    res.send("Error while adding to flightcrew");
+                    } else {
+                        res.render("./admin/admindashboard", { message: "Flight Created Successfully Flight number: " + post.flight_number });
+                    }
+
+                });
+
+                
             }
         });
     });

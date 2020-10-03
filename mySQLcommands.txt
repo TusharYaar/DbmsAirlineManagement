@@ -45,3 +45,12 @@ from flight
 join airport as ap_des on flight.departure = ap_des.airport_id 
 join airport as ap_dep on flight.destination = ap_dep.airport_id
 ;
+
+
+
+create table flightcrew (
+flight_number varchar(5),
+crew_id varchar(5),
+constraint fk_flight_no foreign key(flight_number) references flight(flight_number),
+constraint fk_crew_id foreign key (crew_id) references userinfo(userid) 
+)
