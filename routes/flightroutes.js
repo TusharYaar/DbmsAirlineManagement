@@ -18,13 +18,15 @@ var checkAdmin = (req, res, next) => {
     }
 };
 
-router.get("/addflight", checkAdmin, function(req, res) {
+router.get("/addflight", function(req, res) {
     connection.query('SELECT * FROM airport', function(err, result, fields) {
-        res.render("./admin/addflight", { airport: result });
+        connection.query("SELECT * from userinfo where usertype = 'crew'", function(err, crew, fields){
+            res.render("./admin/addflight", { airport: result, crew: crew});
+        });
+
     });
 });
 router.post("/addflight", checkAdmin, function(req, res) {
-    console.log(req.body);
     connection.query('SELECT count(*) as numb FROM flight', function(err, result, fields) {
         var count = parseInt((result[0].numb) ? result[0].numb : 0);
         var post = {

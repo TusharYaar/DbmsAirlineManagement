@@ -14,11 +14,16 @@ var sessionChecker = (req, res, next) => {
         res.redirect("login");
     }
 };
-
+var isLoggedIn = function(req, res, next) {
+    if (req.session.userid && req.session.first_name)
+    {res.redirect("/dashboard");}
+    else
+    next();
+}
 
 router.get("/", function(req, res) { res.render("home"); });
-router.get("/login", function(req, res) { res.render("login"); });
-router.get("/register", function(req, res) { res.render("register"); });
+router.get("/login",isLoggedIn, function(req, res) { res.render("login"); });
+router.get("/register",isLoggedIn, function(req, res) { res.render("register"); });
 
 
 
@@ -39,7 +44,7 @@ router.get("/dashboard", sessionChecker, function(req, res) {
 
 
 
-router.post('/login', function(req, res) {
+router.post('/login',isLoggedIn ,function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
     if (email && password) {
@@ -84,7 +89,14 @@ router.post('/register', function(req, res) {
                 };
                 connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
                     if (err) throw err;
-                    res.send("user created Now Goto <a href='/login'> Login</a>");
+                    else {
+                        req.session.loggedin = true;
+                        req.session.email = req.body.email;
+                        req.session.first_name = req.body.first_name;
+                        req.session.userid = req.body.userid;
+                        req.session.usertype = req.body.usertype;
+                res.redirect("/secret");
+                    }
                 });
             });
         };

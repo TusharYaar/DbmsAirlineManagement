@@ -10,7 +10,7 @@ phone bigint(10) not null,
 passport_number varchar(10) not null,
 dob date not null, 
 usertype varchar(5),
-occupation varchar(10) not null,
+occupation varchar(12) not null,
 constraint CK_TYPE1 check(usertype IN('user','admin','crew')),
 constraint Email_Check check (email like ('%@%.%'))
 );

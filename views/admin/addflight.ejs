@@ -16,8 +16,42 @@
         <br> Set Arrival Date :<input type="date" name="arrival_date" id="arrival_date" required>
         <br> Set Arrival Time :<input type="time" format="hh:mm:ss" name="arrival_time" required>
         <br>
-        <hr> price per seat :<input type="number" name="price" id="price" required>
+        <hr> price per seat in Rupees:<input type="number" name="price" id="price" required>
+        <hr>
+        Choose Crew:
+        <br>
+        Pilot: <select name="pilot" id="pilot" required>
+          <% crew.forEach(function(crew){ %>
+           <% if(crew.occupation === 'pilot') { %>
+            <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%>  ID: <%=crew.userid%> </option>
+          <% }});%>
+        </select>
+        <br> 
+        AirHostess: <select name="air_hostess" id="air_hostess" required>
+          <% crew.forEach(function(crew){ %>
+           <% if(crew.occupation === 'air_hostess') { %>
+            <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%>  ID: <%=crew.userid%> </option>
+          <% }});%>
+        </select>
+        <br>
+        Technician: <select name="technician" id="technician" required>
+          <% crew.forEach(function(crew){ %>
+           <% if(crew.occupation === 'technician') { %>
+            <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%>  ID: <%=crew.userid%> </option>
+          <% }});%>
+        </select>
         <button type="submit">Submit</button>
     </form>
 
     Goto <a href="/dashboard"> Dashboard</a>
+
+    <script>
+      date = new Date();
+      date = date.toISOString();
+    date=    date.substring(0,10);
+      console.log(date);
+       document.getElementById("departure_date").min = date;
+    
+    
+    
+    </script>
