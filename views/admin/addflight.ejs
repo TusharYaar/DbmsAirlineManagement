@@ -20,21 +20,21 @@
         <hr>
         Choose Crew:
         <br>
-        Pilot: <select name="pilot" id="pilot" required>
+        Pilot: <select name="crew[0]" id="pilot" required>
           <% crew.forEach(function(crew){ %>
            <% if(crew.occupation === 'pilot') { %>
             <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%>  ID: <%=crew.userid%> </option>
           <% }});%>
         </select>
         <br> 
-        AirHostess: <select name="air_hostess" id="air_hostess" required>
+        AirHostess: <select name="crew[1]" id="air_hostess" required>
           <% crew.forEach(function(crew){ %>
            <% if(crew.occupation === 'air_hostess') { %>
             <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%>  ID: <%=crew.userid%> </option>
           <% }});%>
         </select>
         <br>
-        Technician: <select name="technician" id="technician" required>
+        Technician: <select name="crew[2]" id="technician" required>
           <% crew.forEach(function(crew){ %>
            <% if(crew.occupation === 'technician') { %>
             <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%>  ID: <%=crew.userid%> </option>

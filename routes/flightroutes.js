@@ -46,7 +46,9 @@ router.post("/addflight",checkAdmin, function(req, res) {
                 console.log(err);
                 res.render("./admin/admindashboard", { message: "FLight Cannot be created. Server Error" });
             } else {
-                var crew = [[post.flight_number,req.body.pilot],[post.flight_number,req.body.air_hostess],[post.flight_number, req.body.technician]];
+                var crew = [];
+                req.body.crew.forEach(function(person){crew.push([post.flight_number,person]);});
+                // var crew = [[post.flight_number,req.body.pilot],[post.flight_number,req.body.air_hostess],[post.flight_number, req.body.technician]];
                 connection.query('INSERT INTO flightcrew (flight_number, crew_id) VALUES ?',[crew] ,function(err, crewresult, fields) {
                     if(err) {console.log(err);
                     connection.query('DELETE FROM flight WHERE flight_number = ?', post.flight_number,function(err, result, fields){
@@ -70,7 +72,11 @@ router.post("/addflight",checkAdmin, function(req, res) {
 
 
 router.get("/showflights", checkAdmin, function(req, res) {
-    connection.query('SELECT * FROM flight', function(err, result, fields) {
+    var sql = " select flight_number,departure_date,departure_time,arrival_date,arrival_time, " +
+        "ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airport_city as des_city, ap_des.airport_short as des_short, " +
+        "ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city, ap_dep.airport_short as dep_short " +
+        "from flight join airport as ap_dep on flight.departure = ap_dep.airport_id join airport as ap_des on flight.destination = ap_des.airport_id "
+    connection.query(sql, function(err, result, fields) {
         // res.render("./admin/showflight", { data: result });
         res.json(result);
     });
