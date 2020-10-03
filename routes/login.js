@@ -32,7 +32,7 @@ router.get("/dashboard", sessionChecker, function(req, res) {
     if (req.session.usertype == "admin") {
         res.render("./admin/admindashboard", { message: null });
     } else if (req.session.usertype == "crew") {
-        res.send("./crew/crewdashboard", { message: null });
+        res.render("./crew/crewdashboard", { message: null });
     } else if (req.session.usertype == "user") {
         res.render("./user/userdashboard", { message: null });
     }

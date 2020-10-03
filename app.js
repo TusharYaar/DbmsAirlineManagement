@@ -16,7 +16,8 @@ var loginRoute = require("./routes/login"),
     adminRoute = require("./routes/adminroutes"),
     airportRoute = require("./routes/airportroutes"),
     flightRoute = require("./routes/flightroutes"),
-    userRoute = require("./routes/userroutes");
+    userRoute = require("./routes/userroutes"),
+    crewRoute = require("./routes/crewroutes");
 
 app.use(session({
     secret: 'this is a random secret key for testing the user login',
@@ -32,6 +33,7 @@ app.use(adminRoute);
 app.use(airportRoute);
 app.use(flightRoute);
 app.use(userRoute);
+app.use(crewRoute);
 
 // ======================
 //  MISLANEOUS FUNCTIONS

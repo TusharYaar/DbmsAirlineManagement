@@ -61,10 +61,7 @@ router.post("/addflight",checkAdmin, function(req, res) {
                     } else {
                         res.render("./admin/admindashboard", { message: "Flight Created Successfully Flight number: " + post.flight_number });
                     }
-
                 });
-
-                
             }
         });
     });
@@ -75,12 +72,27 @@ router.get("/showflights", checkAdmin, function(req, res) {
     var sql = " select flight_number,departure_date,departure_time,arrival_date,arrival_time, " +
         "ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airport_city as des_city, ap_des.airport_short as des_short, " +
         "ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city, ap_dep.airport_short as dep_short " +
-        "from flight join airport as ap_dep on flight.departure = ap_dep.airport_id join airport as ap_des on flight.destination = ap_des.airport_id "
+        "from flight JOIN airport as ap_dep ON flight.departure = ap_dep.airport_id JOIN airport as ap_des ON flight.destination = ap_des.airport_id "
     connection.query(sql, function(err, result, fields) {
-        // res.render("./admin/showflight", { data: result });
-        res.json(result);
+        res.render("./admin/showflight", { flights: result });
+        // res.json(result);
     });
 
 });
 
+router.get("/showflights/:flight",checkAdmin, function(req, res){
+    flightid =req.params.flight;
+    sql = "SELECT flight.flight_number,departure_date,departure_time,arrival_date,arrival_time, ap_des.airport_name as des_name, " +
+     "ap_des.airport_state as des_state, ap_des.airport_city as des_city, ap_des.airport_short as des_short, " + 
+    "ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city, ap_dep.airport_short as dep_short, " + 
+	"first_name, last_name, email, phone, occupation from flight " +
+    "JOIN flightcrew as crew ON flight.flight_number = crew.flight_number " +
+    "JOIN airport as ap_dep ON flight.departure = ap_dep.airport_id " +
+    "JOIN airport as ap_des ON flight.destination = ap_des.airport_id " +
+    "JOIN userinfo ON userid = crew_id WHERE flight.flight_number = ? " 
+    connection.query(sql,flightid ,function(err, result, fields) {
+    res.send(result);
+    });
+
+});
 module.exports = router;
