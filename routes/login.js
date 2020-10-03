@@ -87,7 +87,7 @@ router.post('/register', function(req, res) {
                     first_name: req.body.first_name.toLowerCase(),
                     last_name: req.body.last_name.toLowerCase(),
                     email: req.body.email.toLowerCase(),
-                    phone: parseInt(req.body.phone).toLowerCase(),
+                    phone: parseInt(req.body.phone),
                     passport_number: req.body.passport_number.toUpperCase(),
                     dob: req.body.date,
                     usertype: "user",
