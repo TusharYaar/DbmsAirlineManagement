@@ -2,7 +2,7 @@ use flightdatabase;
 
 Create table userinfo(
 userid varchar(5) primary key unique, 
-pass varchar(40) not null,
+pass varchar(100) not null,
 first_name varchar(20) not null,
 last_name varchar(20) not null,
 email varchar(40) not null,

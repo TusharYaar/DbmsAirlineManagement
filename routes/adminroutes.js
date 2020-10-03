@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../models/sql');
+var bcrypt = require('bcrypt');
 
 
 var checkAdmin = (req, res, next) => {
     if (req.session.userid && req.session.usertype == "admin") {
         next();
     } else {
-        res.redirect("Dashboard");
+        res.redirect("dashboard");
     }
 };
 
@@ -32,21 +33,24 @@ router.post("/addcrew", checkAdmin, function(req, res) {
                 var post = {
                     userid: "U" + (usercount + 1),
                     pass: req.body.password,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
+                    first_name: req.body.first_name.toLowerCase(),
+                    last_name: req.body.last_name.toLowerCase(),
+                    email: req.body.email.toLowerCase(),
                     phone: parseInt(req.body.phone),
-                    passport_number: req.body.passport_number,
+                    passport_number: req.body.passport_number.toUpperCase(),
                     dob: req.body.date,
                     usertype: "crew",
-                    occupation: req.body.occupation
+                    occupation: req.body.occupation.toLowerCase(),
                 };
-                connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
-                    if (err) {
-                        console.log(err);
-                        res.render("./admin/admindashboard", { message: "Crew was not created. Check your inputs" });
-                    }
-                    res.render("./admin/admindashboard", { message: "Crew has been added successfully. Crew ID: " + post.userid });
+                bcrypt.hash(req.body.password, 10,function (err, hash) {
+                    post.pass=hash;
+                    connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
+                        if (err){ console.log(err);
+                            res.render("./admin/admindashboard", { message: "Crew was not created. Check your inputs" });
+                        }
+                        else
+                        res.render("./admin/admindashboard", { message: "Crew has been added successfully. Crew ID: " + post.userid }); 
+                    });
                 });
             });
         };

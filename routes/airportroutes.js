@@ -5,15 +5,12 @@ const express = require('express'),
 var connection = require('../models/sql');
 
 
-
 var checkAdmin = (req, res, next) => {
-    if (req.session.userid && req.session.email) {
-        if (req.session.usertype == "admin") {
-            next();
-        } else {
-            res.redirect("Dashboard");
-        }
-    } else { res.redirect("login"); }
+    if (req.session.userid && req.session.usertype == "admin") {
+        next();
+    } else {
+        res.redirect("Dashboard");
+    }
 };
 
 router.get("/addairport", checkAdmin, function(req, res) {
@@ -25,9 +22,9 @@ router.post("/addairport", checkAdmin, function(req, res) {
         var count = parseInt((result[0].numb) ? result[0].numb : 0);
         var post = {
             airport_id: "A" + (count + 1),
-            airport_name: req.body.airport_name,
-            airport_city: req.body.airport_city,
-            airport_state: req.body.airport_state,
+            airport_name: req.body.airport_name.toLowerCase(),
+            airport_city: req.body.airport_city.toLowerCase(),
+            airport_state: req.body.airport_state.toLowerCase(),
             airport_short: req.body.airport_short.toUpperCase()
         };
         connection.query('INSERT INTO airport SET ?', post, function(err, result, fields) {

@@ -1,6 +1,7 @@
 const session = require('express-session'),
     bodyParser = require("body-parser"),
     express = require("express"),
+    bcrypt = require('bcrypt'),
     app = express();
 
 app.use(express.static(__dirname + '/public'));
@@ -42,7 +43,7 @@ var sessionChecker = (req, res, next) => {
     if (req.session.email && req.session.userid) {
         next();
     } else {
-        res.redirect("login");
+        res.render("/login",{message: "Please login First"});
     }
 };
 
@@ -64,7 +65,7 @@ app.get("/secret", sessionChecker, function(req, res) {
 
 app.get("/logout", sessionChecker, function(req, res) {
     req.session.destroy();
-    res.send("You have been logged out.<br> <a href='/'>Click Here</a> to goto home page ");
+    res.redirect("/login");
 });
 
 app.get("/addadmin", function(req, res) {
@@ -99,12 +100,16 @@ app.post("/addadmin", function(req, res) {
                     usertype: "admin",
                     occupation: "admin"
                 };
-                connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
-                    if (err) {
-                        console.log(err);
-                        res.send("Admin Account NOT Created!! Goto <a href='/login'>login</a>");
-                    }
-                    res.send("Admin Account Created!! Goto <a href='/login'>login</a>");
+                bcrypt.hash(req.body.password, 10,function (err, hash) {
+                    post.pass=hash;
+                    connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
+                        if (err)  {
+                            console.log(err);
+                            res.sen("Unable to create Admin <a href='/login'>Login</a>");
+                        }
+                        else 
+                            res.send("Admin Account Created! Please Login to Continue <a href='/login'>Login </a>");
+                    });
                 });
             });
         };

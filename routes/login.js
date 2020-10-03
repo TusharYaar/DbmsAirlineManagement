@@ -2,7 +2,8 @@
 // this has both Get and Post routes
 
 const express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    bcrypt = require('bcrypt');
 
 
 var connection = require('../models/sql');
@@ -11,7 +12,7 @@ var sessionChecker = (req, res, next) => {
     if (req.session.email && req.session.userid && req.session.first_name) {
         next();
     } else {
-        res.redirect("login");
+        res.redirect("/login");
     }
 };
 var isLoggedIn = function(req, res, next) {
@@ -48,18 +49,23 @@ router.post('/login',isLoggedIn ,function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
     if (email && password) {
-        connection.query('SELECT * FROM userinfo WHERE email = ? AND pass = ?', [email, password], function(error, results, fields) {
+        connection.query('SELECT * FROM userinfo WHERE email = ?', [email], function(error, results, fields) {
             if (results && results.length > 0) {
-                req.session.loggedin = true;
-                req.session.email = email;
-                req.session.first_name = results[0].first_name;
-                req.session.userid = results[0].userid;
-                req.session.usertype = results[0].usertype;
-                res.redirect("/secret");
-            } else {
-                res.send('Incorrect Username and/or Password! <a href="/login"> Try again </a>');
+                    bcrypt.compare(req.body.password, results[0].pass,function(err, result){
+                        if(!result) {
+                            res.redirect("/login");
+                        }
+                        else {
+                        req.session.loggedin = true;
+                        req.session.email = email;
+                        req.session.first_name = results[0].first_name;
+                        req.session.userid = results[0].userid;
+                        req.session.usertype = results[0].usertype;
+                        res.redirect("/secret");}
+            });}
+            else {
+                res.redirect("/login");
             }
-            res.end();
         });
     }
 });
@@ -78,33 +84,27 @@ router.post('/register', function(req, res) {
                 var post = {
                     userid: "U" + (usercount + 1),
                     pass: req.body.password,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    phone: parseInt(req.body.phone),
-                    passport_number: req.body.passport_number,
+                    first_name: req.body.first_name.toLowerCase(),
+                    last_name: req.body.last_name.toLowerCase(),
+                    email: req.body.email.toLowerCase(),
+                    phone: parseInt(req.body.phone).toLowerCase(),
+                    passport_number: req.body.passport_number.toUpperCase(),
                     dob: req.body.date,
                     usertype: "user",
-                    occupation: req.body.occupation
+                    occupation: req.body.occupation.toLowerCase()
                 };
-                connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
-                    if (err) throw err;
-                    else {
-                        req.session.loggedin = true;
-                        req.session.email = req.body.email;
-                        req.session.first_name = req.body.first_name;
-                        req.session.userid = req.body.userid;
-                        req.session.usertype = req.body.usertype;
-                res.redirect("/secret");
-                    }
+                bcrypt.hash(req.body.password, 10,function (err, hash) {
+                    post.pass=hash;
+                    connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
+                        if (err) throw err;
+                        else 
+                            res.render("login",{message:"User created! Please Login to Continue"});
+                    });
                 });
             });
         };
     });
 });
-
-
-
 
 
 module.exports = router;
