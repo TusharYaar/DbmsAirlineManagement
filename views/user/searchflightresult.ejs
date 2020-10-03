@@ -50,7 +50,9 @@
                 <%= flight.dep_name %>
                     <br> To:
                     <%= flight.des_name %>
-
+            <% if(message != null) {%>
+                    <a href="/searchflight/<%=flight.flight_number%>">Book Now</a>
+            <%}%>
         </div>
 
         <%}) %>
