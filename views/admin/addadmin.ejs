@@ -19,6 +19,12 @@
     <hr>
 
     <p><a href="/login">Click here </a> to Go to Login.</p>
-
+    <script>
+        date = new Date();
+        date = date.toISOString();
+      date = date.substring(0,10);
+        console.log(date);
+         document.getElementById("date").max = date;
+      </script> 
 
     <%- include('../partials/footer') %>

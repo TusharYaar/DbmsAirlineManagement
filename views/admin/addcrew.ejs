@@ -22,7 +22,13 @@
     <br>
     <br>
     <hr>
-
+    <script>
+        date = new Date();
+        date = date.toISOString();
+      date = date.substring(0,10);
+        console.log(date);
+         document.getElementById("date").max = date;
+      </script> 
     <p><a href="/login">Click here </a> to Go to Dashboard.</p>
 
     <%- include('../partials/footer') %>
