@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
-
+const express = require('express'),
+ router = express.Router(),
+flash = require('connect-flash'),
+middleware = require('../middleware');
 
 
 
@@ -8,25 +9,14 @@ var router = express.Router();
 
 var connection = require('../models/sql');
 
-
-
-var checkAdmin = (req, res, next) => {
-    if (req.session.userid && req.session.usertype == "admin") {
-        next();
-    } else {
-        res.redirect("Dashboard");
-    }
-};
-
-router.get("/addflight",checkAdmin, function(req, res) {
+router.get("/addflight", middleware.checkAdmin, function(req, res) {
     connection.query('SELECT * FROM airport', function(err, result, fields) {
         connection.query("SELECT * from userinfo where usertype = 'crew'", function(err, crew, fields){
             res.render("./admin/addflight", { airport: result, crew: crew});
         });
-
     });
 });
-router.post("/addflight",checkAdmin, function(req, res) {
+router.post("/addflight", middleware.checkAdmin, function(req, res) {
     // console.log(req.body);
     // res.send("reached");
     connection.query('SELECT count(*) as numb FROM flight', function(err, result, fields) {
@@ -68,7 +58,7 @@ router.post("/addflight",checkAdmin, function(req, res) {
 });
 
 
-router.get("/showflights", checkAdmin, function(req, res) {
+router.get("/showflights",  middleware.checkAdmin, function(req, res) {
     var sql = " select flight_number,departure_date,departure_time,arrival_date,arrival_time, " +
         "ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airport_city as des_city,  " +
         "ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city " +
@@ -80,7 +70,7 @@ router.get("/showflights", checkAdmin, function(req, res) {
 
 });
 
-router.get("/showflights/:flight",checkAdmin, function(req, res){
+router.get("/showflights/:flight", middleware.checkAdmin, function(req, res){
     flightid =req.params.flight;
     sql = "SELECT flight.flight_number,departure_date,departure_time,arrival_date,arrival_time, ap_des.airport_name as des_name, " +
      "ap_des.airport_state as des_state, ap_des.airport_city as des_city, ap_des.airport_short as des_short, " + 
@@ -93,6 +83,7 @@ router.get("/showflights/:flight",checkAdmin, function(req, res){
     connection.query(sql,flightid ,function(err, result, fields) {
     res.send(result);
     });
-
 });
+
+
 module.exports = router;

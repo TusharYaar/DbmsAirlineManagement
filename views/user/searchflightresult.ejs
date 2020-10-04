@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<link rel="stylesheet" href="styles/searchflight.css">
+<link rel="stylesheet" href="/styles/searchflight.css">
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">
         <img src="images/FullLogo.png" class="animate__animated animate__swing" width="200" height="auto" alt="" loading="lazy">
@@ -60,4 +60,11 @@
         </div>
 
         <%})} %>
+
+        <script>
+            date = new Date();
+            date = date.toISOString();
+             document.getElementById("departure_date").min = date.substring(0,10);
+          </script>
+
         <%- include('../partials/footer') %>

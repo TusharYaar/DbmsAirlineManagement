@@ -3,33 +3,19 @@
 
 const express = require('express'),
     router = express.Router(),
-    bcrypt = require('bcrypt');
-
-
+    bcrypt = require('bcrypt'),
+    flash = require('connect-flash'),
+    middleware = require('../middleware');
 var connection = require('../models/sql');
 
-var sessionChecker = (req, res, next) => {
-    if (req.session.email && req.session.userid && req.session.first_name) {
-        next();
-    } else {
-        res.redirect("/login");
-    }
-};
-var isLoggedIn = function(req, res, next) {
-    if (req.session.userid && req.session.first_name)
-    {res.redirect("/dashboard");}
-    else
-    next();
-}
-
 router.get("/", function(req, res) { res.redirect("/searchflight"); });
-router.get("/login",isLoggedIn, function(req, res) { res.render("login"); });
-router.get("/register",isLoggedIn, function(req, res) { res.render("register"); });
+router.get("/login",middleware.isLoggedIn, function(req, res) { res.render("login"); });
+router.get("/register",middleware.isLoggedIn, function(req, res) { res.render("register"); });
 
 
 
 
-router.get("/dashboard", sessionChecker, function(req, res) {
+router.get("/dashboard", middleware.sessionChecker, function(req, res) {
     if (req.session.usertype == "admin") {
         res.render("./admin/admindashboard", { message: null });
     } else if (req.session.usertype == "crew") {
@@ -40,12 +26,7 @@ router.get("/dashboard", sessionChecker, function(req, res) {
 });
 
 
-
-
-
-
-
-router.post('/login',isLoggedIn ,function(req, res) {
+router.post('/login',middleware.isLoggedIn ,function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
     if (email && password) {
@@ -64,13 +45,11 @@ router.post('/login',isLoggedIn ,function(req, res) {
                         res.redirect("/secret");}
             });}
             else {
-                res.redirect("/login");
+                res.redirect("/login",{message: req.flash("login_message")});
             }
         });
     }
 });
-
-
 
 
 router.post('/register', function(req, res) {

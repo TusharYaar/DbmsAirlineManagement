@@ -1,18 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var connection = require('../models/sql');
-var bcrypt = require('bcrypt');
+const express = require('express');
+const router = express.Router();
+const connection = require('../models/sql');
+const bcrypt = require('bcrypt');
+const flash = require('connect-flash'),
+    middleware = require('../middleware');
 
-
-var checkAdmin = (req, res, next) => {
-    if (req.session.userid && req.session.usertype == "admin") {
-        next();
-    } else {
-        res.redirect("dashboard");
-    }
-};
-
-router.get("/showusers", checkAdmin, function(req, res) {
+router.get("/showusers", middleware.checkAdmin, function(req, res) {
     connection.query('SELECT * FROM userinfo', function(err, result, fields) {
         // res.render("./admin/showusers", { data: result });
         res.send(result);
@@ -20,9 +13,9 @@ router.get("/showusers", checkAdmin, function(req, res) {
 
 });
 
-router.get("/addcrew", checkAdmin, function(req, res) { res.render("./admin/addcrew"); });
+router.get("/addcrew", middleware.checkAdmin, function(req, res) { res.render("./admin/addcrew"); });
 
-router.post("/addcrew", checkAdmin, function(req, res) {
+router.post("/addcrew", middleware.checkAdmin, function(req, res) {
     var email = req.body.email;
     connection.query('SELECT * FROM userinfo WHERE email = ?', email, function(err, result, fields) {
         if (result && result.length > 0) {

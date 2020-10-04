@@ -54,3 +54,15 @@ crew_id varchar(5),
 constraint fk_flight_no foreign key(flight_number) references flight(flight_number),
 constraint fk_crew_id foreign key (crew_id) references userinfo(userid) 
 )
+
+
+CREATE TABLE bookedflight(
+ticket_number varchar(8) primary key,
+userid varchar(5),
+flight_number varchar (5),
+username varchar(50),
+seat_number int(3),
+constraint fk_userid foreign key(userid) references userinfo(userid),
+constraint fk_flight_number foreign key(flight_number) references flight(flight_number)
+);
+

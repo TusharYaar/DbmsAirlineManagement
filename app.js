@@ -2,12 +2,15 @@ const session = require('express-session'),
     bodyParser = require("body-parser"),
     express = require("express"),
     bcrypt = require('bcrypt'),
-    app = express();
+    app = express(),
+    flash = require('connect-flash'),
+    middleware = require('./middleware');
 
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(flash());
 
 var PORT = process.env.PORT || 3000;
 
@@ -35,23 +38,9 @@ app.use(airportRoute);
 app.use(flightRoute);
 app.use(userRoute);
 app.use(crewRoute);
-
-// ======================
-//  MISLANEOUS FUNCTIONS
-// ================================
-var sessionChecker = (req, res, next) => {
-    if (req.session.email && req.session.userid) {
-        next();
-    } else {
-        res.render("/login",{message: "Please login First"});
-    }
-};
-
-
 // ===============================
 // End Of REQUIRE
 // =================
-
 
 
 
@@ -59,11 +48,11 @@ var sessionChecker = (req, res, next) => {
 // Routes
 // ========================
 
-app.get("/secret", sessionChecker, function(req, res) {
+app.get("/secret", middleware.sessionChecker, function(req, res) {
     res.render("secret", { user: req.session.first_name, userid: req.session.userid, email: req.session.email, type: req.session.usertype });
 });
 
-app.get("/logout", sessionChecker, function(req, res) {
+app.get("/logout", middleware.sessionChecker, function(req, res) {
     req.session.destroy();
     res.redirect("/login");
 });

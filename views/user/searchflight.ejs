@@ -1,8 +1,8 @@
 <%- include('../partials/header') %>
 
-<link rel="stylesheet" href="styles/searchflight.css">
+<link rel="stylesheet" href="/styles/searchflight.css">
 <nav class="navbar navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="searchflight">
         <img src="images/FullLogo.png" class="" width="200" height="auto" alt="" loading="lazy">
     </a>
     <% if (message===null) {%> 
@@ -44,16 +44,14 @@
     </div>
 </div>
 
-<!-- <script>
+<script>
   date = new Date();
   date = date.toISOString();
-date=    date.substring(0,10);
-  console.log(date);
-   document.getElementById("departure_date").min = date;
+   document.getElementById("departure_date").min =   date.substring(0,10);
 
 
 
-</script> -->
+</script>
 
 <%- include('../partials/footer') %>
 

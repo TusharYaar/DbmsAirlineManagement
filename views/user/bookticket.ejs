@@ -1,25 +1,24 @@
-<h3>THis the the plane booking ticket</h3>
-<%var seatbooked = [] %>
-    <% plane["seats"].forEach(function(bkseat){     bkseat.seats.forEach(function(sar){
-        seatbooked.push(parseInt(sar));
-    });
-    
-    });   %>
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/styles/bookticket.css">
 
-        <%= seatbooked%>
-            <form action="/user/bookticket" method="POST">
-                <% for(i=0;i< 45 ;i++){ %>
-                    <% if (seatbooked.includes(i)) {%>
-                        <input type="checkbox" name="check[]" value="<%=i%>" id="seat<%=i%>" disabled> lol
-                        <%} else{%>
-                            <input type="checkbox" name="check[]" value="<%=i%>" id="seat<%=i%>">
-                            <% } %>
-                                <%=i%>
-                                    <% if (i%6===0) {%> <br>
-                                        <%}%>
-                                            <% }%>
-                                                <!-- <input type="checkbox" name="check[]" value="1" id="1"> -->
-                                                <input type="text" name="booker" placeholder="Enter Your name" required>
-                                                <input type="text" name="bookerid" placeholder="Enter Your ID" required>
-                                                <input type="submit" value="book Ticket">
-            </form>
+<h3>This the the plane booking ticket For flight: <%=flight[0].flight_number %></h3>
+<%var seatBooked = []; seats.forEach(function(seat) {seatBooked.push(seat["seat_number"]);}); seatBooked.sort();%>
+
+<form action="/searchflight/<%=flight[0].flight_number%>" method="post">
+    <div class="col-12 col-md-4 row d-flex flex-row justify-content-between">
+    <% for(i=1;i< 49 ;i++){ %>
+        <div class="col-2">
+                <input type="checkbox" name="check[]" class="checkbox" value="<%=i%>" id="seat<%=i%>""  <% if (seatBooked.includes(i)) {%> disabled <%}%>>
+                    <%=i%>
+                </div>
+                        <!-- <% if (i%6===0) {%> <br> <%}%> -->
+    <% }%>
+</div>
+
+<input type="text" name="username[]" value="" id="input1" required maxlength="50">
+<input type="text" name="username[]" value="" id="input2" required maxlength="50">
+<input type="text" name="username[]" value="" id="input3" required maxlength="50">
+<button type="submit">Submit</button>
+</form>
+
+<%- include('../partials/footer') %>

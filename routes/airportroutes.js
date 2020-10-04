@@ -1,23 +1,16 @@
 const express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    middleware = require('../middleware'),
+    flash = require('connect-flash');
 
 
 var connection = require('../models/sql');
 
-
-var checkAdmin = (req, res, next) => {
-    if (req.session.userid && req.session.usertype == "admin") {
-        next();
-    } else {
-        res.redirect("Dashboard");
-    }
-};
-
-router.get("/addairport", checkAdmin, function(req, res) {
+router.get("/addairport", middleware.checkAdmin, function(req, res) {
     res.render("./admin/addairport");
 });
 
-router.post("/addairport", checkAdmin, function(req, res) {
+router.post("/addairport", middleware.checkAdmin, function(req, res) {
     connection.query('SELECT count(*) as numb FROM airport', function(err, result, fields) {
         var count = parseInt((result[0].numb) ? result[0].numb : 0);
         var post = {
@@ -38,7 +31,7 @@ router.post("/addairport", checkAdmin, function(req, res) {
 
 });
 
-router.get("/showairports", checkAdmin, function(req, res) {
+router.get("/showairports", middleware.checkAdmin, function(req, res) {
     connection.query('SELECT * FROM airport', function(err, result, fields) {
         // res.render("./admin/showairport" { data: result });
         res.json(result);
