@@ -1,3 +1,7 @@
+<%- include('partials/header') %>
+
+
+<div class="container">
 <form action="/login" method="post">
     Email: <input required type="email" name="email" placeholder="Email">
     <hr> Password: <input required type="password" name="password" placeholder="Password">
@@ -5,6 +9,5 @@
     <button type="submit">submit</button>
 </form>
 
-
-<%- include('partials/header') %>
-    <p>Not a User <a href="/register">Click Here</a> to Register.</p>
+<p>Not a User <a href="/register">Click Here</a> to Register.</p>
+</div>

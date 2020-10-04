@@ -34,7 +34,8 @@ router.post("/addflight", middleware.checkAdmin, function(req, res) {
         connection.query('INSERT INTO flight SET ?', post, function(err, result, fields) {
             if (err) {
                 console.log(err);
-                res.render("./admin/admindashboard", { message: "FLight Cannot be created. Server Error" });
+                req.flash("error","FLight Cannot be created. Server Error");
+                res.redirect("/dashboard");
             } else {
                 var crew = [];
                 req.body.crew.forEach(function(person){crew.push([post.flight_number,person]);});
@@ -44,12 +45,15 @@ router.post("/addflight", middleware.checkAdmin, function(req, res) {
                     connection.query('DELETE FROM flight WHERE flight_number = ?', post.flight_number,function(err, result, fields){
                         if (err) {
                             console.log(err);
-                            res.send("Flight Created but cannot be deleted");                            
+                            req.flash("error","Flight Created but cannot be deleted");
+                            res.redirect("/dashboard");   
+
                         }
                     });
                     res.send("Error while adding to flightcrew");
                     } else {
-                        res.render("./admin/admindashboard", { message: "Flight Created Successfully Flight number: " + post.flight_number });
+                        res.flash("success","Flight Created Successfully Flight number:"  + post.flight_number)
+                        res.redirect("/dashboard");
                     }
                 });
             }

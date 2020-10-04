@@ -1,18 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var flash = require('connect-flash');
+var middleware = require('../middleware');
 
 var connection = require('../models/sql');
 
 
 
-var checkUser = (req, res, next) => {
-    if (req.session.userid && req.session.usertype == "user") {
-        next();
-    } else {
-        res.redirect("/dashboard");
-    }
-};
 router.get("/searchflight", function(req, res) {
     connection.query('SELECT * FROM airport', function(err, result, fields) {
         res.render("./user/searchflight", { airport: result, message:req.session.email || null });
@@ -68,7 +62,7 @@ router.get("/searchflight/:flight",function(req, res){
     });
 });
 
-router.post("/searchflight/:flight",checkUser, function (req,res) {
+router.post("/searchflight/:flight",middleware.checkUser, function (req,res) {
     // console.log(req.body);
     var data = [];
     connection.query('SELECT count(ticket_number) AS numb FROM bookedflight',function (err, result, fields){
@@ -82,7 +76,8 @@ router.post("/searchflight/:flight",checkUser, function (req,res) {
             res.send("Error addin to the table");
             }
             else{
-                res.send("SEats Added");
+                req.flash("success","Seats have been booked!!");
+                res.redirect("/dashboard");
             }
         });
     });

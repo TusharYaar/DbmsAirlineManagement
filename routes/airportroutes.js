@@ -23,9 +23,11 @@ router.post("/addairport", middleware.checkAdmin, function(req, res) {
         connection.query('INSERT INTO airport SET ?', post, function(err, result, fields) {
             if (err) {
                 console.log(err);
-                res.render("./admin/admindashboard", { message: "Airport Cannot Be Added Encountered Some error check your inputs. " });
+                req.flash("error","Airport Cannot Be Added Encountered Some error check your inputs. ");
+                res.redirect("/dashboard");
             };
-            res.render("./admin/admindashboard", { message: "Airport has been added successfully. Airport ID: " + post.airport_id });
+            req.flash("Airport has been added successfully. Airport ID: " + post.airport_id );
+            res.redirect("/dashboard");
         });
     });
 

@@ -10,7 +10,22 @@ app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: 'this is a random secret key for testing the user login',
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.use(flash());
+
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.session.email || null;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    res.locals.warning = req.flash("warning");
+    next();
+});
 
 var PORT = process.env.PORT || 3000;
 
@@ -23,11 +38,6 @@ var loginRoute = require("./routes/login"),
     userRoute = require("./routes/userroutes"),
     crewRoute = require("./routes/crewroutes");
 
-app.use(session({
-    secret: 'this is a random secret key for testing the user login',
-    resave: true,
-    saveUninitialized: true
-}));
 
 // ======================================
 //          ROUTESSSS REQUIRED
@@ -53,6 +63,7 @@ app.get("/secret", middleware.sessionChecker, function(req, res) {
 });
 
 app.get("/logout", middleware.sessionChecker, function(req, res) {
+    req.flash("error","You have been Logged Out!!");
     req.session.destroy();
     res.redirect("/login");
 });
@@ -94,10 +105,12 @@ app.post("/addadmin", function(req, res) {
                     connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
                         if (err)  {
                             console.log(err);
-                            res.sen("Unable to create Admin <a href='/login'>Login</a>");
+                            req.flash("error","Unable to create Admin");
+                            res.redirect("/login");
                         }
                         else 
-                            res.send("Admin Account Created! Please Login to Continue <a href='/login'>Login </a>");
+                            req.flash("success","Admin Account Created! Please Login to Continue");
+                            res.redirect("/login");
                     });
                 });
             });

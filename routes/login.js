@@ -17,11 +17,11 @@ router.get("/register",middleware.isLoggedIn, function(req, res) { res.render("r
 
 router.get("/dashboard", middleware.sessionChecker, function(req, res) {
     if (req.session.usertype == "admin") {
-        res.render("./admin/admindashboard", { message: null });
+        res.render("./admin/admindashboard");
     } else if (req.session.usertype == "crew") {
-        res.render("./crew/crewdashboard", { message: null });
+        res.render("./crew/crewdashboard");
     } else if (req.session.usertype == "user") {
-        res.render("./user/userdashboard", { message: null });
+        res.render("./user/userdashboard");
     }
 });
 
@@ -34,6 +34,7 @@ router.post('/login',middleware.isLoggedIn ,function(req, res) {
             if (results && results.length > 0) {
                     bcrypt.compare(req.body.password, results[0].pass,function(err, result){
                         if(!result) {
+                            req.flash('error',"Incorrect Password OR Email");
                             res.redirect("/login");
                         }
                         else {
@@ -42,10 +43,12 @@ router.post('/login',middleware.isLoggedIn ,function(req, res) {
                         req.session.first_name = results[0].first_name;
                         req.session.userid = results[0].userid;
                         req.session.usertype = results[0].usertype;
+                        req.flash("success","Welcome back User!!");
                         res.redirect("/secret");}
             });}
             else {
-                res.redirect("/login",{message: req.flash("login_message")});
+                req.flash('error','User with entered Email Not Found');
+                res.redirect("/login");
             }
         });
     }
@@ -56,7 +59,8 @@ router.post('/register', function(req, res) {
     var email = req.body.email;
     connection.query('SELECT * FROM userinfo WHERE email = ?', email, function(err, result, fields) {
         if (result && result.length > 0) {
-            res.send("user already exists <a href='/register'> Try again<a>");
+            req.flash("error","User with given Email Already Exists!!");
+            res.redirect("/login");
         } else {
             connection.query('SELECT count(userid) as numb FROM userinfo ', function(err, result, fields) {
                 var usercount = parseInt((result[0].numb) ? result[0].numb : 0);
@@ -77,7 +81,8 @@ router.post('/register', function(req, res) {
                     connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
                         if (err) throw err;
                         else 
-                            res.render("login",{message:"User created! Please Login to Continue"});
+                            res.flash("success","User Created!! Please Login");
+                            res.redirect("/login");
                     });
                 });
             });
