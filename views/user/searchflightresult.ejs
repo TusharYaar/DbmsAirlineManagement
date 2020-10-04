@@ -41,7 +41,9 @@
 </div>
 
 
-
+<% if(flight.length==0){ %>
+<div><h4>No flights Found</h4></div>
+<%} else {%>
     <%  flight.forEach(function(flight){ %>
         <div>
             Flight Id:
@@ -52,10 +54,10 @@
                     <%= flight.des_name %>
             <% if(message != null) {%>
                     <a href="/searchflight/<%=flight.flight_number%>">Book Now</a>
-            <%}%>
+            <%} else {%>
+                <p>Login to Book the flight</p>
+                <%}%>
         </div>
 
-        <%}) %>
-
-
+        <%})} %>
         <%- include('../partials/footer') %>

@@ -22,7 +22,7 @@ var isLoggedIn = function(req, res, next) {
     next();
 }
 
-router.get("/", function(req, res) { res.render("home"); });
+router.get("/", function(req, res) { res.redirect("/searchflight"); });
 router.get("/login",isLoggedIn, function(req, res) { res.render("login"); });
 router.get("/register",isLoggedIn, function(req, res) { res.render("register"); });
 
