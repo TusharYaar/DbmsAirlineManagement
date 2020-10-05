@@ -66,3 +66,11 @@ constraint fk_userid foreign key(userid) references userinfo(userid),
 constraint fk_flight_number foreign key(flight_number) references flight(flight_number)
 );
 
+
+
+select ticket_number, userid, bookedflight.flight_number, username, seat_number, departure_date,departure_time,arrival_date,arrival_time,
+ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airport_city as des_city,
+ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city from bookedflight join flight on bookedflight.flight_number = flight.flight_number
+join airport as ap_des on flight.departure = ap_des.airport_id 
+join airport as ap_dep on flight.destination = ap_dep.airport_id
+where userid = 'U5';

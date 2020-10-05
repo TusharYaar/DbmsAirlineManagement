@@ -5,10 +5,10 @@
     <a class="navbar-brand" href="searchflight">
         <img src="images/FullLogo.png" class="" width="200" height="auto" alt="" loading="lazy">
     </a>
-    <% if (message===null) {%> 
+    <% if (currentUser===null) {%> 
     <span class="navbar-text"><a href="login">Login</a> <a href="/register" class="mx-4"> Register </a> </span>
     <%} else {%>
-        <span class="navbar-text"> logged in as: <%=message %> <a href="/logout" class ="mx-4">Logout</a>
+        <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
         <% }%>
 
 </nav>

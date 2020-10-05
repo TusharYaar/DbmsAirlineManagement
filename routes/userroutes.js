@@ -29,13 +29,13 @@ router.post("/searchflight", function(req, res) {
                     console.log(err);
                     res.send("error");
                 }
-                res.render("./user/searchflightresult", { airport: result, flight: results,message: req.session.email || null});
+                res.render("./user/searchflightresult", { airport: result, flight: results});
             });
         }
     });
 });
 
-router.get("/searchflight/:flight",function(req, res){
+router.get("/searchflight/:flight",middleware.sessionChecker, function (req, res){
     flight = req.params.flight;
     var sql = " SELECT flight.flight_number, departure_date,departure_time, arrival_date, arrival_time, " +
     "ap_des.airport_name AS des_name, ap_des.airport_state AS des_state, ap_des.airport_city AS des_city, ap_des.airport_short AS des_short, " +
@@ -62,7 +62,7 @@ router.get("/searchflight/:flight",function(req, res){
     });
 });
 
-router.post("/searchflight/:flight",middleware.checkUser, function (req,res) {
+router.post("/searchflight/:flight",middleware.sessionChecker, function (req,res) {
     // console.log(req.body);
     var data = [];
     connection.query('SELECT count(ticket_number) AS numb FROM bookedflight',function (err, result, fields){
@@ -83,4 +83,25 @@ router.post("/searchflight/:flight",middleware.checkUser, function (req,res) {
     });
 });
 
+router.get("/showbookedflights", middleware.sessionChecker,function(req,res){
+ sql = "select ticket_number, userid, bookedflight.flight_number, username, seat_number, departure_date,departure_time,arrival_date, " + 
+ "arrival_time, ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airport_city as des_city, " +
+ "ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city " +
+ "from bookedflight join flight on bookedflight.flight_number = flight.flight_number " +
+ "join airport as ap_des on flight.departure = ap_des.airport_id " +
+ "join airport as ap_dep on flight.destination = ap_dep.airport_id " +
+"where userid = ?"
+    connection.query(sql,[req.session.userid],function(err, result, fields){
+        if(err){console.log(err);
+            req.flash('error',"Encounterd An Server Error");
+        res.redirect("/dashboard");}
+        else if(result.length < 1){
+            req.flash("warning","You Do Not Have any booked Tickets");
+            res.redirect("/dashboard");
+        }
+        else {
+            res.send(result);
+        }
+    });
+});
 module.exports = router;

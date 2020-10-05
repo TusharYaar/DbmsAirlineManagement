@@ -1,11 +1,12 @@
 <%- include('../partials/header') %>
 <link rel="stylesheet" href="/styles/bookticket.css">
+<script src="/javascripts/bookticket.js"></script>
 
 <h3>This the the plane booking ticket For flight: <%=flight[0].flight_number %></h3>
 <%var seatBooked = []; seats.forEach(function(seat) {seatBooked.push(seat["seat_number"]);}); seatBooked.sort();%>
 
 <form action="/searchflight/<%=flight[0].flight_number%>" method="post">
-    <div class="col-12 col-md-4 row d-flex flex-row justify-content-between">
+    <div class="col-12 col-md-4 row d-flex flex-row justify-content-between plane-body no-click">
     <% for(i=1;i< 49 ;i++){ %>
         <div class="col-2">
                 <input type="checkbox" name="check[]" class="checkbox" value="<%=i%>" id="seat<%=i%>""  <% if (seatBooked.includes(i)) {%> disabled <%}%>>
@@ -14,11 +15,15 @@
                         <!-- <% if (i%6===0) {%> <br> <%}%> -->
     <% }%>
 </div>
-
 <input type="text" name="username[]" value="" id="input1" required maxlength="50">
+<div class="text_values">
 <input type="text" name="username[]" value="" id="input2" required maxlength="50">
 <input type="text" name="username[]" value="" id="input3" required maxlength="50">
+</div>
+<hr>
 <button type="submit">Submit</button>
+
 </form>
+
 
 <%- include('../partials/footer') %>

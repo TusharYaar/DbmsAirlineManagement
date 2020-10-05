@@ -11,3 +11,6 @@
     border-radius: 5px;
 }
 
+.no-click{
+    pointer-events: none;
+};
