@@ -19,13 +19,9 @@
                         <input type="checkbox" id="seat<%=i%>" name="check[]" value="<%=i%>" <% if (seatBooked.includes(i)) {%> disabled <%}%> />
                     <label for="seat<%=i%>"><%=i%></label>
                     </li>
-
                     <%  if((i-1)%6==5){ %>
                 </ol>
             </li>
-
-
-
             <%}} %>
         </ol>
     </div>
@@ -52,13 +48,14 @@
                          <% if (i%6===0) {%> <br> <%}%> 
     <% }%>
 </div> -->
-    <input type="text" name="username[]" value="" id="input1" required maxlength="50">
+   
     <div class="text_values">
+        <input type="text" name="username[]" value="" id="input1" required maxlength="50">
         <input type="text" name="username[]" value="" id="input2" required maxlength="50">
         <input type="text" name="username[]" value="" id="input3" required maxlength="50">
     </div>
     <hr>
-    <button type="submit">Submit</button>
+    <button type="submit" id="submitButton"class="btn btn-dark">Submit</button>
 
 </form>
 
