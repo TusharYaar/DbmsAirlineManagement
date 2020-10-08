@@ -1,28 +1,58 @@
 <%- include('../partials/header') %>
 
+<p>Add a Crew</p>
+<form action="/addadmin" method="post">
+  First Name<input
+    required
+    type="text"
+    name="first_name"
+    id="first_name"
+    maxlength="20"
+  />
+  Last Name<input
+    required
+    type="text"
+    name="last_name"
+    id="last_name"
+    maxlength="20"
+  />
+  <hr />
+  email <input required type="email" name="email" id="email" maxlength="40" />
+  <hr />
+  password
+  <input
+    required
+    type="password"
+    name="password"
+    id="password"
+    maxlength="40"
+  />
+  <hr />
+  phone-number
+  <input required type="number" name="phone" id="phone" max="9999999999" />
+  <hr />
+  passPort Number
+  <input
+    required
+    type="text"
+    name="passport_number"
+    id="passport"
+    maxlength="10"
+  />
+  <hr />
+  DOB <input required type="date" name="date" id="date" format="dd-MMM-yyyy" />
+  <hr />
+  <button type="submit">Submit</button>
+</form>
+<br />
+<br />
+<hr />
 
-    <p>Add a Crew </p>
-    <form action="/addadmin" method="post">
+<p><a href="/login">Click here </a> to Go to Login.</p>
+<script>
+  date = new Date();
+  date = date.toISOString();
+  document.getElementById("date").max = date.substring(0, 10);
+</script>
 
-        First Name<input required type="text" name="first_name" id="first_name" maxlength="20"> last_name
-        <input required type="text" name="last_name" id="last_name" maxlength="20">
-        <hr> email <input required type="email" name="email" id="email" maxlength="40">
-        <hr> password <input required type="password" name="password" id="password" maxlength="40">
-        <hr>phone-number <input required type="number" name="phone" id="phone" max="9999999999">
-        <hr> passPort Number <input required type="text" name="passport_number" id="passport" maxlength="10">
-        <hr> DOB <input required type="date" name="date" id="date" format="dd-MMM-yyyy">
-        <hr>
-        <button type="submit">Submit</button>
-    </form>
-    <br>
-    <br>
-    <hr>
-
-    <p><a href="/login">Click here </a> to Go to Login.</p>
-    <script>
-      date = new Date();
-      date = date.toISOString();
-       document.getElementById("date").max = date.substring(0,10);
-    </script> 
-
-    <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>

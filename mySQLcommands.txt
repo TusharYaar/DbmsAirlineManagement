@@ -73,4 +73,4 @@ ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airpo
 ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city from bookedflight join flight on bookedflight.flight_number = flight.flight_number
 join airport as ap_des on flight.departure = ap_des.airport_id 
 join airport as ap_dep on flight.destination = ap_dep.airport_id
-where userid = 'U5';
+where userid = 'U5'; 

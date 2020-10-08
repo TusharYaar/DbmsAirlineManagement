@@ -1,27 +1,56 @@
 .navbar {
-    opacity: 85%;
+  opacity: 85%;
 }
 
 body {
-    padding-top: 100px;
-    background-image: url(../images/HomeBackground-min.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+  padding-top: 100px;
+  background-image: url(../images/HomeBackground-min.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 label {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 .searchBox {
-    width: 100%;
-
+  width: 100%;
 }
 #submitButton {
-    margin-top:2.7rem;
+  margin-top: 2.7rem;
 }
-#tagLine{
-    margin: 30px 10px 10px auto;
-    font-weight: 600;
-    font-size: 5rem;
+#tagLine {
+  margin: 30px 10px 10px auto;
+  font-weight: 600;
+  font-size: 5rem;
+}
 
+.flight_result {
+  background-color: rgb(40, 129, 226, 0.7);
+  border-radius: 5px;
+  font-size: 1.4rem;
+}
+.time_slice {
+  font-size: 1.2rem;
+  margin-top: -30px;
+}
+select {
+  text-transform: capitalize;
+}
+.flight_result {
+  padding: 8px;
+}
+
+.svgflight {
+  margin-left: -50px;
+  margin-top: -50px;
+  height: 10rem;
+  width: 10rem;
+}
+.bookbutton,
+.timediff {
+  width: 100%;
+  margin-top: 35px;
+}
+.flight_datetime {
+  margin-top: 20px;
 }

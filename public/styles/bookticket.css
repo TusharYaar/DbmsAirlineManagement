@@ -1,16 +1,16 @@
-.col-2{
-    border: 2px solid black;
-    border-radius: 5px;
-    height: 50px;
-    padding:5px;
-    font-size: 1rem;
+.col-2 {
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 50px;
+  padding: 5px;
+  font-size: 1rem;
 }
 .col-2 > input.checkbox {
-    height:20px;
-    width: 20px;
-    border-radius: 5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
 }
 
-.no-click{
-    pointer-events: none;
-};
+.no-click {
+  pointer-events: none;
+}

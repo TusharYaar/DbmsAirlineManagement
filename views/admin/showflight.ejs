@@ -1,21 +1,10 @@
-<%- include('../partials/header') %>
-
-
-<%flights.forEach(function(flight){ %>
- <hr>
+<%- include('../partials/header') %> <%flights.forEach(function(flight){ %>
+<hr />
 Flight id: <%=flight.flight_number %>
-<br>
+<br />
 From: <%=flight.dep_city %>
-<br>
+<br />
 TO: <%=flight.des_city%>
 
 <a href="/showflights/<%=flight.flight_number%>">View Details</a>
-<% }) %>
-
-
-
-
-
-
-
-<%- include('../partials/footer') %>
+<% }) %> <%- include('../partials/footer') %>

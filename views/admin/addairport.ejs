@@ -1,17 +1,14 @@
 <%- include('../partials/header') %>
-    <p>This is the Add Airport page</p>
-    <form action="/addairport" method="post">
-        Airport Name: <input type="text" required name="airport_name" maxlength="35">
-        <br> Airport City: <input type="text" required name="airport_city" maxlength="35">
-        <br> Airport State: <input type="text" required name="airport_state" maxlength="35">
-        <br> ShortForm: <input type="text" required name="airport_short" maxlength="4">
-        <button type="submit">Submit</button>
+<p>This is the Add Airport page</p>
+<form action="/addairport" method="post">
+  Airport Name:
+  <input type="text" required name="airport_name" maxlength="35" /> <br />
+  Airport City:
+  <input type="text" required name="airport_city" maxlength="35" /> <br />
+  Airport State:
+  <input type="text" required name="airport_state" maxlength="35" /> <br />
+  ShortForm: <input type="text" required name="airport_short" maxlength="4" />
+  <button type="submit">Submit</button>
+</form>
 
-
-
-    </form>
-
-
-
-
-    <p>Goto <a href="/dashboard">DashBoard</a> </p>
+<p>Goto <a href="/dashboard">DashBoard</a></p>

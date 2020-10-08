@@ -1,70 +1,97 @@
 <%- include('../partials/header') %>
-
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <link rel="stylesheet" href="/styles/searchflight.css">
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">
         <img src="images/FullLogo.png" class="animate__animated animate__swing" width="200" height="auto" alt="" loading="lazy">
     </a>
-    <% if (currentUser == null) {%> 
+    <% if (currentUser == null) {%>
     <span class="navbar-text"><a href="login">Login</a> <a href="/register" class="mx-4"> Register </a> </span>
     <%} else {%>
-        <span class="navbar-text"> logged in as: <%= currentUser %><a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
+    <span class="navbar-text"> logged in as: <%= currentUser %><a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class="mx-4">Logout</a>
         <% }%>
 
 </nav>
 <div class="container-fluid">
-        <form action="/searchflight" method="POST">
-            <div class=" searchBox row ">
-                <div class=" col-4"> <label for="departure">
-                    FROM:</label> <select name="departure" id=" departure" class=" form-control" required>
-                        <% airport.forEach(function(airport){ %>
-                            <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
-                          <% });%>     
-        </select>
-                </div>
-                <div class=" col-4"> <label for=" destination ">TO:</label>
-                    <select name="destination" id=" destination" class=" form-control" required>
-                        <% airport.forEach(function(airport){ %>
-                            <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
-                          <% });%>
-        </select>
-                </div>
-                <div class=" col-2">
-                    <label for=" departure_date " > Departure Date:</label>
-                   <input class="form-control" type="date" name="date" id="date" min="2020-09-30" required>
-    </div>
-    <div class="col-2">
-        <button type="submit" class="btn btn-primary" id="submitButton" >Search the Flight</button>
-    </div>
-    </div>
+    <form action="/searchflight" method="POST">
+        <div class=" searchBox row row-cols-2 row-cols-md-12">
+            <div class=" col-6 col-sm-4"> <label for="departure">
+                    From:</label> <select name="departure" id=" departure" class=" form-control" required>
+                    <% airport.forEach(function(airport){ %>
+                    <option value="<%=airport.airport_id%>"><%= airport.airport_city %></option>
+                    <% });%>
+                </select>
+            </div>
+            <div class=" col-6 col-sm-4"> <label for=" destination ">To:</label>
+                <select name="destination" id=" destination" class=" form-control" required>
+                    <% airport.forEach(function(airport){ %>
+                    <option value="<%=airport.airport_id%>"><%= airport.airport_city %></option>
+                    <% });%>
+                </select>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <label for=" departure_date "> Departure Date:</label>
+                <input class="form-control" type="date" name="date" id="departure_date" min="2020-09-30" required>
+            </div>
+            <div class="col-6 col-sm-3 col-md-2">
+                <button type="submit" class="btn btn-primary" id="submitButton">Search the Flight</button>
+            </div>
+        </div>
     </form>
 </div>
 
 
-<% if(flight.length==0){ %>
-<div><h4>No flights Found</h4></div>
-<%} else {%>
+<div class="container my-5">
+    <% if(flight.length==0){ %>
+    <div>
+        <h4>No flights Found</h4>
+    </div>
+    <%} else {%>
+
     <%  flight.forEach(function(flight){ %>
-        <div>
-            Flight Id:
-            <%= flight.flight_number%>
-                <br> From:
-                <%= flight.dep_name %>
-                    <br> To:
-                    <%= flight.des_name %>
-            <% if(currentUser != null) {%>
-                    <a href="/searchflight/<%=flight.flight_number%>">Book Now</a>
-            <%} else {%>
-                <p>Login to Book the flight</p>
-                <%}%>
+    <div class="row flight_result animate__animated animate__fadeInDown text-center my-3">
+        <div class="col-4 col-md-1 flight_price my-auto"><strong>₹<%=flight.price%></strong></div>
+        <div class="col-8 col-md-2 row flight_datetime">
+            <div class="col-12">
+                <strong><%=flight.departure_date.toDateString().slice(-11)%></strong>
+            </div>
+            <div class="col-5 time_slice">
+                <%=flight.departure_time.slice(0,5)%>&#8594;
+            </div>
+            <div class="col-5 time_slice">
+                <%=flight.arrival_time.slice(0,5)%>
+            </div>
+        </div>
+        <div class="col-12 col-md-2 flight_datetime">
+            <div class="col-12">
+                <strong> <%=flight.dep_short%></div></strong>
+            <div class="col-12 text-capitalize"><%=flight.dep_city%></div>
+        </div>
+        <div class="col-1 flight_datetime">
+            <lottie-player class="svgflight" src="https://assets5.lottiefiles.com/packages/lf20_x62chJ.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        </div>
+        <div class="col-2 flight_datetime">
+            <div class="col-12">
+                <strong><%=flight.des_short%></strong></div>
+            <div class="col-12 text-capitalize"><%=flight.des_city%></div>
         </div>
 
-        <%})} %>
+        <div class="col-2 timediff">
+            <%=flight.duration.slice(0,2) + 'hrs ' + flight.duration.slice(3,5) + 'mins' %>
+        </div>
+        <div class="col-2">
 
-        <script>
-            date = new Date();
-            date = date.toISOString();
-             document.getElementById("departure_date").min = date.substring(0,10);
-          </script>
+            <button type="button" class="btn btn-dark bookbutton"><a href="/searchflight/<%=flight.flight_number%>">Book Now</a></button>
+        </div>
 
-        <%- include('../partials/footer') %>
+    </div>
+
+    <%})} %>
+</div>
+<script>
+    date = new Date();
+    date = date.toISOString();
+    document.getElementById("departure_date").min = date.substring(0, 10);
+</script>
+
+<%- include('../partials/footer') %>

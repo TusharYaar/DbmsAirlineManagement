@@ -19,7 +19,7 @@ app.use(session({
 
 app.use(flash());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.currentUser = req.session.email || null;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
@@ -58,17 +58,17 @@ app.use(crewRoute);
 // Routes
 // ========================
 
-app.get("/secret", middleware.sessionChecker, function(req, res) {
+app.get("/secret", middleware.sessionChecker, function (req, res) {
     res.render("secret", { user: req.session.first_name, userid: req.session.userid, email: req.session.email, type: req.session.usertype });
 });
 
-app.get("/logout", middleware.sessionChecker, function(req, res) {
-    req.flash("error","You have been Logged Out!!");
-    req.session.destroy();
+app.get("/logout", middleware.sessionChecker, function (req, res) {
+    req.flash("error", "You have been Logged Out!!");
     res.redirect("/login");
+    req.session.destroy();
 });
 
-app.get("/addadmin", function(req, res) {
+app.get("/addadmin", function (req, res) {
     if (PORT == 3000)
         res.render("./admin/addadmin");
     else {
@@ -77,16 +77,16 @@ app.get("/addadmin", function(req, res) {
     }
 });
 
-app.post("/addadmin", function(req, res) {
+app.post("/addadmin", function (req, res) {
     if (PORT != 3000) {
         res.send("You are not authorized to add admin from this port");
     }
     var email = req.body.email;
-    connection.query('SELECT * FROM userinfo WHERE email = ?', email, function(err, result, fields) {
+    connection.query('SELECT * FROM userinfo WHERE email = ?', email, function (err, result, fields) {
         if (result && result.length > 0) {
             res.send("User with this email already exists!! Goto <a href='/login'>login</a>");
         } else {
-            connection.query('SELECT count(userid) as numb FROM userinfo ', function(err, result, fields) {
+            connection.query('SELECT count(userid) as numb FROM userinfo ', function (err, result, fields) {
                 var usercount = parseInt((result[0].numb) ? result[0].numb : 0);
                 var post = {
                     userid: "U" + (usercount + 1),
@@ -100,17 +100,17 @@ app.post("/addadmin", function(req, res) {
                     usertype: "admin",
                     occupation: "admin"
                 };
-                bcrypt.hash(req.body.password, 10,function (err, hash) {
-                    post.pass=hash;
-                    connection.query('INSERT INTO userinfo SET ?', post, function(err, result, fields) {
-                        if (err)  {
+                bcrypt.hash(req.body.password, 10, function (err, hash) {
+                    post.pass = hash;
+                    connection.query('INSERT INTO userinfo SET ?', post, function (err, result, fields) {
+                        if (err) {
                             console.log(err);
-                            req.flash("error","Unable to create Admin");
+                            req.flash("error", "Unable to create Admin");
                             res.redirect("/login");
                         }
-                        else 
-                            req.flash("success","Admin Account Created! Please Login to Continue");
-                            res.redirect("/login");
+                        else
+                            req.flash("success", "Admin Account Created! Please Login to Continue");
+                        res.redirect("/login");
                     });
                 });
             });
@@ -119,9 +119,9 @@ app.post("/addadmin", function(req, res) {
 });
 
 // ===========SEE at LAST===========
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
     res.send("You hit the error route");
 });
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log("Server is flying");
 });

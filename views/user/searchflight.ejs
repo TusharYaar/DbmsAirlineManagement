@@ -18,14 +18,14 @@
                 <div class=" col-6 col-sm-4"> <label for="departure">
                     From:</label> <select name="departure" id=" departure" class=" form-control" required>
                         <% airport.forEach(function(airport){ %>
-                            <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
+                            <option value="<%=airport.airport_id%>"><%= airport.airport_city %></option>
                           <% });%>     
         </select>
                 </div>
                 <div class=" col-6 col-sm-4"> <label for=" destination ">To:</label>
                     <select name="destination" id=" destination" class=" form-control" required>
                         <% airport.forEach(function(airport){ %>
-                            <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
+                            <option value="<%=airport.airport_id%>"><%= airport.airport_city %></option>
                           <% });%>
         </select>
                 </div>

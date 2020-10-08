@@ -1,24 +1,22 @@
 <h3>THis the the plane booking ticket</h3>
-<%var seatbooked = [] %>
-    <% plane["seats"].forEach(function(bkseat){     bkseat.seats.forEach(function(sar){
-        seatbooked.push(parseInt(sar));
-    });
-    
-    });   %>
-
-        <%= seatbooked%>
-            <form action="/user/bookticket" method="POST">
-                <% for(i=0;i< 45 ;i++){ %>
-                    <% if (seatbooked.includes(i)) {%>
-                        <input type="checkbox" name="check[]" value="<%=i%>" id="seat<%=i%>" disabled> lol
-                        <%} else{%>
-                            <input type="checkbox" name="check[]" value="<%=i%>" id="seat<%=i%>">
-                            <% } %>
-                                <%=i%>
-                                    <% if (i%6===0) {%> <br> <%}%>
-                <% }%>
-                                                <!-- <input type="checkbox" name="check[]" value="1" id="1"> -->
-                                                <input type="text" name="booker" placeholder="Enter Your name" required>
-                                                <input type="text" name="bookerid" placeholder="Enter Your ID" required>
-                                                <input type="submit" value="book Ticket">
-            </form>
+<%var seatbooked = [] %> <% plane["seats"].forEach(function(bkseat){
+bkseat.seats.forEach(function(sar){ seatbooked.push(parseInt(sar)); }); }); %>
+<%= seatbooked%>
+<form action="/user/bookticket" method="POST">
+  <% for(i=0;i< 45 ;i++){ %> <% if (seatbooked.includes(i)) {%>
+  <input
+    type="checkbox"
+    name="check[]"
+    value="<%=i%>"
+    id="seat<%=i%>"
+    disabled
+  />
+  lol <%} else{%>
+  <input type="checkbox" name="check[]" value="<%=i%>" id="seat<%=i%>" />
+  <% } %> <%=i%> <% if (i%6===0) {%> <br />
+  <%}%> <% }%>
+  <!-- <input type="checkbox" name="check[]" value="1" id="1"> -->
+  <input type="text" name="booker" placeholder="Enter Your name" required />
+  <input type="text" name="bookerid" placeholder="Enter Your ID" required />
+  <input type="submit" value="book Ticket" />
+</form>
