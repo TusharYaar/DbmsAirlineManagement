@@ -47,7 +47,6 @@
         <h4>No flights Found</h4>
     </div>
     <%} else {%>
-
     <%  flight.forEach(function(flight){ %>
     <div class="row flight_result animate__animated animate__fadeInDown text-center my-3">
         <div class="col-4 col-md-1 flight_price my-auto"><strong>₹<%=flight.price%></strong></div>
@@ -75,17 +74,13 @@
                 <strong><%=flight.des_short%></strong></div>
             <div class="col-12 text-capitalize"><%=flight.des_city%></div>
         </div>
-
         <div class="col-2 timediff">
             <%=flight.duration.slice(0,2) + 'hrs ' + flight.duration.slice(3,5) + 'mins' %>
         </div>
         <div class="col-2">
-
             <button type="button" class="btn btn-dark bookbutton"><a href="/searchflight/<%=flight.flight_number%>">Book Now</a></button>
         </div>
-
     </div>
-
     <%})} %>
 </div>
 <script>
@@ -93,5 +88,4 @@
     date = date.toISOString();
     document.getElementById("departure_date").min = date.substring(0, 10);
 </script>
-
 <%- include('../partials/footer') %>

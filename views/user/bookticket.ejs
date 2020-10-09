@@ -27,37 +27,10 @@
     </div>
     <div class="exit exit--back">
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="col-12 col-md-4 row d-flex flex-row justify-content-between plane-body no-click">
-    <% for(i=1;i< 49 ;i++){ %>
-        <div class="col-2">
-                <input type="checkbox" name="check[]" class="checkbox" value="<%=i%>" id="seat<%=i%>""  <% if (seatBooked.includes(i)) {%> disabled <%}%>>
-                    <%=i%>
-                </div>
-                         <% if (i%6===0) {%> <br> <%}%> 
-    <% }%>
-</div> -->
-   
     <div class="text_values">
-        <input type="text" name="username[]" value="" id="input1" required maxlength="50">
-        <input type="text" name="username[]" value="" id="input2" required maxlength="50">
-        <input type="text" name="username[]" value="" id="input3" required maxlength="50">
     </div>
     <hr>
     <button type="submit" id="submitButton"class="btn btn-dark">Submit</button>
 
 </form>
-
-
 <%- include('../partials/footer') %>
