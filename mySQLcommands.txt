@@ -74,3 +74,15 @@ ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airpo
 join airport as ap_des on flight.departure = ap_des.airport_id 
 join airport as ap_dep on flight.destination = ap_dep.airport_id
 where userid = 'U5'; 
+
+
+select * from flightcrew
+JOIN flight ON flightcrew.flight_number = flight.flight_number 
+where crew_id = 'U2'
+
+
+
+select * from userinfo 
+join bookedflight on bookedflight.userid = userinfo.userid 
+join flight on bookedflight.flight_number = flight.flight_number
+where bookedflight.flight_number = 'F3'
