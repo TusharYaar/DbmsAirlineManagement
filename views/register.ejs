@@ -1,20 +1,21 @@
 <%- include('partials/header') %>
-<form action="/register" method="post">
+<link rel="stylesheet" href="./styles/registerstyle.css">
+<!-- <form action="/register" method="post">
   First Name<input
-    required
+    required 
     type="text"
     name="first_name"
     id="first_name"
     maxlength="20"
   />
   last_name
-  <input required type="text" name="last_name" id="last_name" maxlength="20" />
+  <input required  type="text" name="last_name" id="last_name" maxlength="20" />
   <hr />
-  email <input required type="email" name="email" id="email" maxlength="40" />
+  email <input required  type="email" name="email" id="email" maxlength="40" />
   <hr />
   password
   <input
-    required
+    required 
     type="password"
     name="password"
     id="password"
@@ -22,25 +23,25 @@
   />
   <hr />
   phone-number
-  <input required type="number" name="phone" id="phone" max="9999999999" />
+  <input required  type="number" name="phone" id="phone" max="9999999999" />
   <hr />
   passPort Number
   <input
-    required
+    required 
     type="text"
     name="passport_number"
     id="passport"
     maxlength="10"
   />
   <hr />
-  DOB <input required type="date" name="date" id="date" format="dd-MMM-yyyy" />
+  DOB <input required  type="date" name="date" id="date" format="dd-MMM-yyyy" />
   <hr />
   Occupation
   <input
     type="test"
     name="occupation"
     id="occupation"
-    required
+    required 
     maxlength="12"
   />
   <hr />
@@ -52,6 +53,29 @@
 <hr />
 
 <p>Alreadt a User ?? <a href="/login">Click here </a> to login.</p>
+ -->
+
+
+
+<div class="container">
+  <form action="/register" method="post">
+    <input required  type="text" name="first_name" placeholder='First name' id="first_name" maxlength="20" style="margin-bottom: 43px; margin-right: 50px; width: 250px; left: 105px; top: -266px; background: #C4C4C4; border-radius: 0px;"/>    
+    <input required  type="text" name="last_name" id="last_name" placeholder="Last name" maxlength="20" style=" width: 250px; left: 361px; top: -266px; background: #C4C4C4; border-radius: 0px; margin-bottom: 43px;" />
+    <input required class="form-control"  type="email" name="email" id="email" placeholder="Email" maxlength="40" style="margin-bottom: 43px; left: 105px; top: -191px; background: #C4C4C4; border-radius: 0px;" />
+  <input required class="form-control"  type="password" name="password" id="password" placeholder="Password" maxlength="40" style="margin-bottom: 39px; left: 105px; top: -116px; background: #C4C4C4; border-radius: 0px;"/>
+  <input required class="form-control"  type="number" name="phone" id="phone" placeholder="Phone Number" max="9999999999"style="margin-bottom: 43px; left: 105px; top: -41px; background: #C4C4C4; border-radius: 0px;" />
+  <input required class="form-control"  type="text" name="passport_number" id="passport" placeholder="Passport Number" maxlength="10" style="margin-bottom: 43px; left: 105px; top: 34px; background: #C4C4C4;border-radius: 0px;"/>
+  <input required class="form-control"  type="date" name="date" id="date" placeholder="DOB" format="dd-MMM-yyyy" style="margin-bottom: 43px;width: 163px;left: 361px; top: 34px; border-radius: 0px; background: #C4C4C4;" />
+  <input type="test" name="occupation" id="occupation" placeholder="Occupation" required class="form-control"  maxlength="12" style="margin-bottom: 43px; left: 105px; top: 109px; background: #C4C4C4; border-radius: 0px;"/>
+    <button type="submit" class="btn btn-dark"style="margin-bottom: 20px;">Submit</button>
+  </form>
+    <p>Alreadt a User ?? <a href="/login">Click here </a> to login.</p>
+</div>
+
+
+
+
+
 
 <script>
   date = new Date();

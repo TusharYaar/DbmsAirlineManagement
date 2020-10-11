@@ -11,13 +11,13 @@
 <body>
     <div class="container">
         <% if(error && error.length > 0) {%>
-        <div class="alert alert-danger"> <%= error %></div>    
+        <div class="alert alert-danger alert-dismissible fade show alert1" role="alert"> <%= error %> </div>    
             <%}%>
         <% if(success && success.length > 0) {%>
-            <div class="alert alert-success"> <%= success %></div>    
+            <div class="alert alert-success alert-dismissible fade show alert2" role="alert"> <%= success %> </div>    
             <%}%>
         <% if(warning && warning.length > 0) {%>
-            <div class="alert alert-warning"> <%= warning %></div>    
+            <div class="alert alert-warning alert-dismissible fade show alert3" role="alert"> <%= warning %> </div>    
             <%}%>            
     </div>
 <div id="loader_parent">
@@ -27,10 +27,19 @@
         <span></span>
       </div>
 </div>
-<script> document.addEventListener("DOMContentLoaded",function(){
+<script> 
+document.addEventListener("DOMContentLoaded",function(){
     document.getElementById("loader_parent").remove();
 });</script>
       <style>
+.alert{
+    position: absolute;
+    top: 0;
+    left:0;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
 
 #loader_parent{
             position: absolute;

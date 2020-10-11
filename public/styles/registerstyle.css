@@ -1,0 +1,16 @@
+body {
+  background-image: url("../images/register.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  margin: auto;
+  margin-top: 70px;
+  margin-left: 900px;
+  padding: auto;
+  width: 40%;
+  height: 70%;
+}

@@ -1,0 +1,78 @@
+body {
+  background-image: url("../images/loginBG.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.box {
+  position: absolute;
+  width: 668px;
+  height: 700px;
+  left: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.box2 {
+  position: absolute;
+  width: 527px;
+  height: 455px;
+  left: 66px;
+  top: 226px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 18px;
+}
+
+.title {
+  width: 100%;
+  float: left;
+  line-height: 46px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #3766e7;
+  position: absolute;
+}
+.btn-btn-Login {
+  position: absolute;
+  width: 137px;
+  height: 43px;
+  left: 104px;
+  top: 356px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.47);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.btn-btn-SignUp {
+  position: absolute;
+  width: 137px;
+  height: 43px;
+  left: 248px;
+  color: #ffffff;
+  top: 356px;
+
+  background: rgba(0, 0, 0, 0.47);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.p-form-control {
+  color: #ffffff;
+  background: none;
+  position: absolute;
+  border: none;
+  border-bottom: 3px solid white;
+  width: 384px;
+  height: 40px;
+  left: 137px;
+  top: 483px;
+}
+.u-form-control {
+  color: #ffffff;
+  background: none;
+  position: absolute;
+  border: none;
+  border-bottom: 3px solid white;
+  width: 384px;
+  height: 40px;
+  left: 137px;
+  top: 383px;
+}
