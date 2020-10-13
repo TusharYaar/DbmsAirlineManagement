@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="./styles/showbookticket.css">
+<% var oob = Object.keys(result[1]);%>
+<table>
+<tr>
+<% oob.forEach(function (value){%>
+    <th><%=value %></th>
+<%});%>
+</tr>
+<% result.forEach(function (ticket){ %>
+    <tr>
+    <% oob.forEach(function(col){ %>
+        <td><%=ticket[col] %></td>     
+<% }); %>
+</tr>
+ <%}); %>
+</table>
+
+<div id='root'></div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.production.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js'></script>
+<%- include('../partials/footer') %>
+<script src="./javascripts/showbookedticket.js"></script>
+
+
