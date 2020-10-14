@@ -56,7 +56,7 @@ router.post("/login", middleware.isLoggedIn, function (req, res) {
   }
 });
 
-router.post("/register", function (req, res) {
+router.post("/register", middleware.isLoggedIn, function (req, res) {
   var email = req.body.email;
   connection.query("SELECT * FROM userinfo WHERE email = ?", email, function (err, result, fields) {
     if (result && result.length > 0) {

@@ -75,7 +75,7 @@ router.post("/searchflight/:flight", middleware.sessionChecker, function (req, r
     connection.query("INSERT INTO bookedflight VALUES ? ", [data], function (err, result, fields) {
       if (err) {
         console.log(err);
-        res.send("Error addin to the table");
+        res.send("Error adding to the table");
       } else {
         req.flash("success", "Seats have been booked!!");
         res.redirect("/dashboard");

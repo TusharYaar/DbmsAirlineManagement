@@ -1,10 +1,27 @@
-<%- include('../partials/header') %> <%flights.forEach(function(flight){ %>
+<%- include('../partials/header') %> 
+<form action="/showflights" method="get">    
+<select name="orderby" id="">
+<option value="ap_des.airport_city">Destination</option>
+<option value="ap_dep.airport_city">Departure</option>
+<option value="departure_date">Date</option>
+<option value="flight_number">Flight Number</option>
+</select>    
+<select name="order" >
+<option value="ASC">Ascending Order</option>
+<option value="DESC">Descending Order</option>
+</select>
+<button type="submit">Submit</button>
+</form>
+<hr>
+<%flights.forEach(function(flight){ %>
 <hr />
 Flight id: <%=flight.flight_number %>
 <br />
 From: <%=flight.dep_city %>
 <br />
 TO: <%=flight.des_city%>
+<br>
+On: <%=flight.departure_date.toDateString() %> At <%=flight.departure_time.slice(0,5) %>
 
 <a href="/showflights/<%=flight.flight_number%>">View Details</a>
 <% }) %> <%- include('../partials/footer') %>

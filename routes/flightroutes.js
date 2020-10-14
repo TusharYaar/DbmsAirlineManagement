@@ -60,6 +60,11 @@ router.post("/addflight", middleware.checkAdmin, function (req, res) {
 
 router.get("/showflights", middleware.checkAdmin, function (req, res) {
   var sql = " select duration, flight_number,departure_date,departure_time,arrival_date,arrival_time, " + "ap_des.airport_name as des_name, ap_des.airport_state as des_state, ap_des.airport_city as des_city,  " + "ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city " + "from flight JOIN airport as ap_dep ON flight.departure = ap_dep.airport_id JOIN airport as ap_des ON flight.destination = ap_des.airport_id ";
+  if (req.query.orderby) {
+    sql = sql + " ORDER BY " + req.query.orderby;
+    sql += " " + req.query.order;
+  }
+
   connection.query(sql, function (err, result, fields) {
     res.render("./admin/showflight", { flights: result });
     // res.json(result);
