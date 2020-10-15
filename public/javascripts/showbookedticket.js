@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
           Flight[index].dep_short,
           React.createElement("div", { id: "detailLabel" }, Flight[index].dep_name + ", " + Flight[index].dep_state)
         ),
+
         React.createElement(
           "div",
           {
@@ -59,11 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
               marginTop: "15px",
             },
           },
+
           React.createElement("img", {
             style: { width: "30px" },
             src: "https://github.com/pizza3/asset/blob/master/airplane2.png?raw=true",
           })
         ),
+
         React.createElement(
           "div",
           { id: "flightDetail" },
@@ -76,9 +79,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "To"
           ),
           Flight[index].des_short,
+
           React.createElement("div", { id: "detailLabel" }, Flight[index].des_name + ", " + Flight[index].des_state)
         )
       ),
+
       React.createElement(
         "div",
         {
@@ -88,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             transitionDelay: active ? "0s" : "0.3s",
           },
         },
+
         React.createElement(
           "div",
           { id: "firstTop" },
@@ -104,8 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 marginLeft: "16px",
                 marginRight: "16px",
               },
+
               src: "https://github.com/pizza3/asset/blob/master/airplane2.png?raw=true",
             }),
+
             React.createElement("div", { id: "detailDate" }, Flight[index].des_city, React.createElement("div", { id: "detailTime" }, Flight[index].arrival_time.slice(0, 5)), Flight[index].arrival_date.slice(0, 15))
           )
         ),
@@ -116,7 +124,14 @@ document.addEventListener("DOMContentLoaded", function () {
             "div",
             { id: "firstBehindDisplay" },
             React.createElement("div", { id: "firstBehindRow" }, React.createElement("div", { id: "detail" }, Flight[index].departure_time.slice(0, 5) + " - " + Flight[index].arrival_time.slice(0, 5), React.createElement("div", { id: "detailLabel" }, "Flight Time")), React.createElement("div", { id: "detail" }, Flight[index].userid, React.createElement("div", { id: "detailLabel" }, "UserID"))),
-            React.createElement("div", { id: "firstBehindRow" }, React.createElement("div", { id: "detail" }, Flight[index].duration.slice(0, 5), React.createElement("div", { id: "detailLabel" }, "Duration")), React.createElement("div", { id: "detail" }, Flight[index].flight_number, React.createElement("div", { id: "detailLabel" }, "Flight Number"))),
+
+            React.createElement(
+              "div",
+              { id: "firstBehindRow" },
+              React.createElement("div", { id: "detail" }, Flight[index].duration.slice(0, 5), React.createElement("div", { id: "detailLabel" }, "Duration")),
+
+              React.createElement("div", { id: "detail" }, Flight[index].flight_number, React.createElement("div", { id: "detailLabel" }, "Flight Number"))
+            ),
 
             React.createElement(
               "div",
@@ -126,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
               React.createElement("div", { id: "detail" }, Flight[index].seat_number, React.createElement("div", { id: "detailLabel" }, "Seat"))
             )
           ),
+
           React.createElement(
             "div",
             {
@@ -137,7 +153,11 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             React.createElement("div", { id: "secondTop" }),
             React.createElement(
+              "div",
+              { id: "secondBehind" },
               React.createElement(
+                "div",
+                { id: "secondBehindDisplay" },
                 React.createElement("div", { id: "price" }, "₹" + Flight[index].price, React.createElement("div", { id: "priceLabel" }, "Price")),
 
                 React.createElement("div", { id: "price" }, Flight[index].username, React.createElement("div", { id: "priceLabel" }, "Name")),
