@@ -1,14 +1,22 @@
 <%- include('../partials/header') %>
-    <p>This is the
-        <h2>User</h2> dashboard</p>
+<style>
+    .container{margin-top:100px;
+    text-align:center}
+    .button{
+width: 235px;
+height: 98px;
+margin-top: 180px;
+border-radius: 31px;
+			}
+			.button1 {background-color: #0A96D2;margin-right: 50px;} 
+            .button2 {background-color: #0A96D2;} 
+</style>
 
 
-
-
-
-            goto <a href="/searchflight"> Seach flight </a>
-            <hr>
-            goto <a href="/showbookedflights"> Show  booked flights </a> 
-            <hr> 
-            
-            <a href="/logout"> Logout</a>
+<div class="container">
+    <h1>USER DASHBOARD</h1>
+    <div class="d-flex justify-content-center">
+        <a href="/searchflight"><button class="button button1">Search Flight</button></a>
+        <a href="/showbookedflights"><button class="button button2">View Book Flight</button></a>
+    </div>
+</div>

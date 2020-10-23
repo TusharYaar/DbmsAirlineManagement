@@ -18,7 +18,7 @@ body {
   width: 527px;
   height: 455px;
   left: 66px;
-  top: 226px;
+  top: 206px;
   background: rgba(255, 255, 255, 0.35);
   border-radius: 18px;
 }
@@ -63,7 +63,7 @@ body {
   width: 384px;
   height: 40px;
   left: 137px;
-  top: 483px;
+  top: 303px;
 }
 .u-form-control {
   color: #ffffff;
@@ -74,5 +74,5 @@ body {
   width: 384px;
   height: 40px;
   left: 137px;
-  top: 383px;
+  top: 203px;
 }

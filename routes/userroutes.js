@@ -92,7 +92,7 @@ router.get("/showbookedflights", middleware.sessionChecker, function (req, res) 
     "from bookedflight join flight on bookedflight.flight_number = flight.flight_number " +
     "join airport as ap_dep on flight.departure = ap_dep.airport_id " +
     "join airport as ap_des on flight.destination = ap_des.airport_id " +
-    "where userid = ? ORDER BY bookedflight.flight_number DESC";
+    "where userid = ? ORDER BY departure_date, departure_time DESC";
   connection.query(sql, [req.session.userid], function (err, result, fields) {
     if (err) {
       console.log(err);

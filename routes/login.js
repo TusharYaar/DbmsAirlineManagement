@@ -45,7 +45,7 @@ router.post("/login", middleware.isLoggedIn, function (req, res) {
             req.session.userid = results[0].userid;
             req.session.usertype = results[0].usertype;
             req.flash("success", "Welcome back User!!");
-            res.redirect("/secret");
+            res.redirect("/dashboard");
           }
         });
       } else {

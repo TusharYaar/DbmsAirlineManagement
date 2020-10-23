@@ -8,8 +8,8 @@ body {
 
 .container {
   margin: auto;
-  margin-top: 70px;
-  margin-left: 900px;
+  padding-top: 20px;
+  margin-left: 800px;
   padding: auto;
   width: 40%;
   height: 70%;
