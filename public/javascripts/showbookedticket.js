@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 React.createElement("div", { id: "price" }, "₹" + Flight[index].price, React.createElement("div", { id: "priceLabel" }, "Price")),
 
                 React.createElement("div", { id: "price" }, Flight[index].username, React.createElement("div", { id: "priceLabel" }, "Name")),
-                React.createElement("img", { id: "barCode", src: "https://github.com/pizza3/asset/blob/master/barcode.png?raw=true" })
+                React.createElement("img", { id: "barcode" + index })
               ),
               React.createElement(
                 "div",
@@ -189,4 +189,16 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   };
   ReactDOM.render(React.createElement("div", null, React.createElement(App, null)), rootElement);
+  genereteBarcode(Flight);
 });
+var tx;
+function genereteBarcode(Flight) {
+  Flight.forEach(function (ob, i) {
+    tx = ob.userid + "_" + ob.flight_number + "_" + ob.ticket_number;
+    JsBarcode("#barcode" + i, tx, {
+      text: " ",
+      height: 200,
+      width: 1,
+    });
+  });
+}

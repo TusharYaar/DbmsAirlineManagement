@@ -18,6 +18,7 @@ var booked_seats = [];
 var booked_seats_name = [];
 
 document.addEventListener("DOMContentLoaded", function () {
+  price = parseInt($("#flight_value").text().slice(2));
   $("input[type='checkbox']").prop("checked", false);
   $("input[type='checkbox']").on("click", function () {
     if (this.checked) {
@@ -30,8 +31,16 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (!this.checked) {
       booked_seats.splice(booked_seats.indexOf(this.value), 1);
     }
+    $("#seat_number_parent").text(booked_seats.length);
     addInput();
     ButtonCheck();
+  });
+  $("#seat_reset").on("click", function () {
+    booked_seats = [];
+    $("input[type='checkbox']").prop("checked", false);
+    $("#seat_number_parent").text("0");
+    ButtonCheck();
+    addInput();
   });
   ButtonCheck();
 });
@@ -47,8 +56,12 @@ function ButtonCheck() {
 }
 
 function addInput() {
-  $(".text_values").html(" ");
+  $(".text_values").html("");
+  $("#seat_status_seat").html("");
+  $("#value_f").html("");
   booked_seats.forEach(function (seat, i) {
-    $(".text_values").append("Enter Name of Person For Seat " + seat + "<input type='text' name='username[]' value='' id='input" + i + "' required maxlength='50' class='animate__animated animate__fadeInDown mx-4'><br>");
+    $(".text_values").append(seat + "<input type='text' name='username[]' value='' id='input" + i + "' required maxlength='50' placeholder='Enter Name' class='animate__animated animate__fadeInDown mx-4'><br>");
+    $("#seat_status_seat").append("<div> " + seat + "</div>");
+    $("#value_f").html(price * (i + 1));
   });
 }

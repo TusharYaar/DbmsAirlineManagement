@@ -2,14 +2,18 @@
 <link rel="stylesheet" href="/styles/bookticket.css">
 <script src="/javascripts/bookticket.js"></script>
 
-<h3>This the the plane booking ticket For flight: <%=flight[0].flight_number %></h3>
+<div class="container flight_details row animate__animated animate__fadeInDown">
+<h2 class="col-1"> <%=flight[0].flight_number %></h2>
+<h3 class="text-capitalize"><%=flight[0].dep_city%>(<%=flight[0].dep_short%>) 
+&#8594;
+<%=flight[0].des_city%>(<%=flight[0].des_short%>)</h3>
+<h3><%=flight[0].departure_date.toDateString().slice(-11) %> @ <%=flight[0].departure_time.slice(0,5)%></h3>
+<h3 id="flight_value"> &#8377;<%=flight[0].price%> </h3>
+</div>
 <%var seatBooked = []; seats.forEach(function(seat) {seatBooked.push(seat["seat_number"]);}); seatBooked.sort();%>
-<h3 class="select-text">Please select a seat</h3>
-</div>
-<div class="exit exit--front">
-</div>
-<form action="/searchflight/<%=flight[0].flight_number%>" method="post">
-    <div class="cabin">
+<form action="/searchflight/<%=flight[0].flight_number%>" method="post" >
+    <div class="row mt-5 ml-5 ">
+    <div class="cabin col-5 animate__animated animate__fadeInLeft ml-5">
         <ol>
             <%  for(i=1;i<49 ;i++){if((i-1)%6===0){ %>
             <li class="row row--<%=i%>">
@@ -25,12 +29,33 @@
             <%}} %>
         </ol>
     </div>
-    <div class="exit exit--back">
-    </div>
+    <div class="col-3 text_values_parent animate__animated animate__fadeInRight">
+         <p >Number of Seats: <span id="seat_number_parent">0</span></p>
     <div class="text_values">
     </div>
-    <hr>
+    Value:  &#8377;<span id="value_f"></span>
+    <br>
     <button type="submit" id="submitButton"class="btn btn-dark">Submit</button>
+    </div>
+    <div class="col-4 legend_parent">
+        <div class="seat_status animate__animated animate__fadeInRight ">
+            <h4>Seat Status</h4>
+            <h5> Your Selected Seats</h5>
+            <div id="seat_status_seat" class="row d-flex justify-content-around"></div>
+            <button id="seat_reset" type="button" class="btn btn-success">Reset</button>
+        </div>
+        <div class="legend animate__animated animate__fadeInUp">
+            <h4>Legend</h4> 
+            <div>
+                <span class = "d-flex "> <div style="background-color:#24A298;">16</div> Seat Avalible</span> 
+                <span class = "d-flex "> <div style="background-color:#BFBFBE;">X</div> Seat Not Avalible</span> 
+                <span class = "d-flex "> <div style="background-color:#020001;">16</div> Seat Selected</span> 
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </form>
+
 <%- include('../partials/footer') %>
