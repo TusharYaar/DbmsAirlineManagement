@@ -13,7 +13,18 @@
     <a href="/searchflight"> Search Flight </a>
     <a href="/logout">Logout</a>
 </div>
-
+<form id="sortfunc" action="/showairports" method="get">    
+    <select name="orderby" id="">
+    <option value="airport_id">Airport ID</option>
+    <option value="airport_city">City</option>
+    <option value="airport_state">State</option>
+    </select>    
+    <select name="order" >
+    <option value="ASC">Ascending Order</option>
+    <option value="DESC">Descending Order</option>
+    </select>
+    <button type="submit">Submit</button>
+    </form>
 
 <div class="main">
     <h2>Existing Flights</h2>
@@ -21,7 +32,7 @@
      <% if(i%2===0) {%><div class="row"> <% } %>
     
   <div class="column">
- 
+ <a href="/showairports/<%=airport.airport_id %>">
   <div class="card">
   
     <h3 class="airportheading"><%=airport.airport_id %></h3> 
@@ -34,6 +45,7 @@
   line-height: 27px;">&nbsp;&nbsp; <%=airport.airport_short%></span></p>
   
   </div>
+</a>
   </div> 
   
   <% if(i%2===1) {%></div> <% } %>

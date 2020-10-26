@@ -32,9 +32,33 @@ router.post("/addairport", middleware.checkAdmin, function (req, res) {
 });
 
 router.get("/showairports", middleware.checkAdmin, function (req, res) {
-  connection.query("SELECT * FROM airport", function (err, result, fields) {
+  sql = "SELECT * FROM airport";
+  if (req.query.orderby) {
+    sql = sql + " ORDER BY " + req.query.orderby;
+    sql += " " + req.query.order;
+  }
+  connection.query(sql, function (err, result, fields) {
     res.render("./admin/showairport", { airports: result });
     // res.json(result);
+  });
+});
+router.get("/showairports/:airport", middleware.checkAdmin, function (req, res) {
+  connection.query("SELECT * FROM airport JOIN flight ON flight.departure = airport_id WHERE airport_id = ? ", req.params.airport, function (err, depairport, fields) {
+    if (err) {
+      console.log(err);
+      req.flash("error", "Airport Cannot Be Displayed, Encountered Some Error");
+      res.redirect("/dashboard");
+    } else {
+      connection.query("SELECT * FROM airport JOIN flight ON flight.destination = airport_id WHERE airport_id = ? ", req.params.airport, function (err, result, fields) {
+        if (err) {
+          console.log(err);
+          req.flash("error", "Airport Cannot Be Displayed, Encountered Some Error");
+          res.redirect("/dashboard");
+        } else {
+          res.send({ depairport: depairport, desairport: result });
+        }
+      });
+    }
   });
 });
 
