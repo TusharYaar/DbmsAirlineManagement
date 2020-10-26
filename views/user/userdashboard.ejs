@@ -12,7 +12,17 @@ border-radius: 31px;
             .button2 {background-color: #0A96D2;} 
 </style>
 
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/searchflight">
+        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+    </a>
+    <% if (currentUser===null) {%> 
+    <span class="navbar-text"><a href="login">Login</a> <a href="/register" class="mx-4"> Register </a> </span>
+    <%} else {%>
+        <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
+        <% }%>
 
+</nav>
 <div class="container">
     <h1>USER DASHBOARD</h1>
     <div class="d-flex justify-content-center">

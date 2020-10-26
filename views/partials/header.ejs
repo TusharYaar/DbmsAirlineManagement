@@ -9,18 +9,7 @@
     <link    rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"  />
     <link rel="stylesheet" href="./styles/preloader.css">
 </head>
-<body style="padding-top: 90px">
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="/searchflight">
-            <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
-        </a>
-        <% if (currentUser===null) {%> 
-        <span class="navbar-text"><a href="login">Login</a> <a href="/register" class="mx-4"> Register </a> </span>
-        <%} else {%>
-            <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
-            <% }%>
-    
-    </nav>
+<body>
     <div class="container">
         <% if(error && error.length > 0) {%>
         <div class="alert alert-danger alert-dismissible fade show alert1" role="alert"> <%= error %> </div>    

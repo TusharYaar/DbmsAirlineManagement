@@ -1,28 +1,93 @@
 <%- include('../partials/header') %>
 
+<link rel="stylesheet" href="./styles/sidebar.css">
+    <div class="sidenav">
+        <li><img src="./images/FullLogo.png" id="logo" /></li>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/addairport">Add An Airport</a>
+        <a href="/showairports">Existing Airports</a>
+        <a href="/addflight">Add a Flight</a>
+        <a href="/showflights">Existing Flights</a>
+        <a href="/addcrew">Add Crew</a>
+        <a href="/showusers">Show All Users</a>
+        <a href="/showbookedflights">Booked Flight</a>
+        <a href="/searchflight"> Search Flight </a>
+        <a href="/logout">Logout</a>
+      </div>
+    <div class="main">
+        <form action="/addcrew" method="post">
+            <h3>ADD CREW</h3>
+          <div class="row">
+            <div class="col-md-12 small-centered">
+              <div class="row">
+                <div class="col-md-12">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    autocomplete="off" required name="first_name" id="first_name" maxlength="20"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input type="text" placeholder="Last Name" autocomplete="off" required name="last_name" id="last_name" maxlength="20" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" placeholder="Email" autocomplete="off" required name="email" id="email" maxlength="40"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" placeholder="Password" autocomplete="off" required name="password" id="password" maxlength="40"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="Number" placeholder="Number" autocomplete="off" required name="phone" id="phone" max="9999999999"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input
+                    type="text"
+                    placeholder="Passport Number"
+                    autocomplete="off"  required name="passport_number" id="passport" maxlength="10"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <input
+                    required
+                    type="date"
+                    placeholder="DOB"
+                    id="date"
+                    name="date"
+                    format="DD-MM-YYYY"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8"  style="width: 80%; padding: 10px; margin-bottom: 20px">
+                  <label
+                    >CREW            
+                    <select name="occupation" id="occupation" required style="width: 50%; padding: 10px; ">
+                      <option value="pilot">Pilot</option>
+                      <option value="technician">Technician</option>
+                      <option value="air_hostess">Air Hostess</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <button class="button button1">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
-    <p>Add a Crew </p>
-    <form action="/addcrew" method="post">
-
-        First Name<input required type="text" name="first_name" id="first_name" maxlength="20"> last_name
-        <input required type="text" name="last_name" id="last_name" maxlength="20">
-        <hr> email <input required type="email" name="email" id="email" maxlength="40">
-        <hr> password <input required type="password" name="password" id="password" maxlength="40">
-        <hr>phone-number <input required type="number" name="phone" id="phone" max="9999999999">
-        <hr> passPort Number <input required type="text" name="passport_number" id="passport" maxlength="10">
-        <hr> DOB <input required type="date" name="date" id="date" format="dd-MMM-yyyy">
-        <hr>
-        <select name="occupation" id="occupation" required>
-        <option value="pilot">Pilot</option>
-        <option value="technician">Technician</option>
-        <option value="air_hostess">AirHostess</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    <br>
-    <br>
-    <hr>
-    <p><a href="/login">Click here </a> to Go to Dashboard.</p>
 
     <script>
       date = new Date();

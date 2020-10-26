@@ -1,46 +1,67 @@
 <%- include('../partials/header') %>
-<form action="/addflight" method="post">
-    Select Departure Airport
-    <select name="departure" id="departure" required>
-        <% airport.forEach(function(airport){ %>
-        <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
-        <% });%>
-    </select>
-    <br /> Set Departure Date :<input type="date" name="departure_date" id="departure_date" required /> <br /> Set Departure Time :<input type="time" format="hh:mm" name="departure_time" id="departure_time" required />
-    <br />
-    <hr /> Select Destination Airport
-    <select name="destination" id="destination" required>
-        <% airport.forEach(function(airport){ %>
-        <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
-        <% });%>
-    </select>
-    <br /> Set Arrival Date :<input type="date" name="arrival_date" id="arrival_date" required /> <br /> Set Arrival Time :<input type="time" format="hh:mm" name="arrival_time" id="arrival_time" required />
-    <br />
-    <input type="hidden" id="duration" name="duration" value="00:00">
-    <input class="col-3" id="duration_view" type="text" placeholder="Duration Will be Calculated and Shown here" readonly>
-    <hr /> price per seat in Rupees:<input type="number" name="price" id="price" required />
-    <hr /> Choose Crew: <br /> Pilot:
-    <select name="crew[0]" id="pilot" required>
-        <% crew.forEach(function(crew){ %> <% if(crew.occupation === 'pilot') { %>
-        <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%> ID: <%=crew.userid%></option>
-        <% }});%>
-    </select>
-    <br /> AirHostess:
-    <select name="crew[1]" id="air_hostess" required>
-        <% crew.forEach(function(crew){ %> <% if(crew.occupation === 'air_hostess') { %>
-        <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%> ID: <%=crew.userid%></option>
-        <% }});%>
-    </select>
-    <br /> Technician:
-    <select name="crew[2]" id="technician" required>
-        <% crew.forEach(function(crew){ %> <% if(crew.occupation === 'technician') { %>
-        <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%> ID: <%=crew.userid%></option>
-        <% }});%>
-    </select>
-    <button type="submit">Submit</button>
-</form>
+<!-- ======================================================================= -->
 
-Goto <a href="/dashboard"> Dashboard</a>
+<link rel="stylesheet" href="./styles/sidebar.css">
+<div class="sidenav">
+    <li><img src="./images/FullLogo.png" id="logo" /></li>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/addairport">Add An Airport</a>
+    <a href="/showairports">Existing Airports</a>
+    <a href="/addflight">Add a Flight</a>
+    <a href="/showflights">Existing Flights</a>
+    <a href="/addcrew">Add Crew</a>
+    <a href="/showusers">Show All Users</a>
+    <a href="/showbookedflights">Booked Flight</a>
+    <a href="/searchflight"> Search Flight </a>
+    <a href="/logout">Logout</a>
+  </div>
+<div class="main">
+    <form action="/addflight" method="post">
+      <h3>ADD FLIGHT</h3>
+  Select Departure Airport
+  <select name="departure" style="width: 50%; margin-bottom: 10px;" id="departure" required>
+    <% airport.forEach(function(airport){ %>
+        <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
+        <% });%>
+  </select>
+  <br /> Set Departure Date :<input type="date" style="width: 50%; margin-bottom: 10px" name="departure_date" id="departure_date" required />
+  <br /> Set Departure Time :<input type="time" style="width: 50%; margin-bottom: 10px" format="hh:mm" name="departure_time" id="departure_time" required />
+  <br />
+  <hr /> Select Destination Airport
+  <select name="destination" style="width: 50%; margin-bottom: 10px;" id="destination" required>
+    <% airport.forEach(function(airport){ %>
+        <option value="<%=airport.airport_id%>"><%= airport.airport_name %></option>
+        <% });%>
+  </select>
+  <br /> Set Arrival Date :<input style="width: 50%; margin-bottom: 10px" type="date" name="arrival_date" id="arrival_date" required /> 
+  <br /> Set Arrival Time :<input style="width: 50%; margin-bottom: 10px" type="time" format="hh:mm" name="arrival_time" id="arrival_time" required />
+  <br />
+  <input type="hidden" id="duration" name="duration" value="00:00">
+  <input class="col-3" id="duration_view" type="text" placeholder="Duration Will be Calculated and Shown here" readonly>
+  <hr /> Price per seat (Rs.):<input style="width: 30%; margin-bottom: 10px" type="number" name="price" id="price" required min="1000" max="100000"/>
+  <hr /> Choose Crew: 
+  <br /> Pilot &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+  <select name="crew[0]" id="pilot" style="width: 50%; margin-bottom: 10px;" required>
+    <% crew.forEach(function(crew){ %> <% if(crew.occupation === 'pilot') { %>
+    <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%> ID: <%=crew.userid%></option>
+    <% }});%>
+</select>
+  <br /> Air Hostess &nbsp;&nbsp;&nbsp;:
+  <select name="crew[1]" id="air_hostess" style="width: 50%; margin-bottom: 10px;"  required>
+    <% crew.forEach(function(crew){ %> <% if(crew.occupation === 'air_hostess') { %>
+    <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%> ID: <%=crew.userid%></option>
+    <% }});%>
+    </select>
+  <br/> Technician&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+  <select name="crew[2]" id="technician" style="width: 50%; margin-bottom: 10px;" required>
+    <% crew.forEach(function(crew){ %> <% if(crew.occupation === 'technician') { %>
+    <option value="<%=crew.userid%>"><%=crew.first_name%> <%=crew.last_name%> ID: <%=crew.userid%></option>
+    <% }});%>
+</select>
+  <br />
+  <button type="submit" class="button button1">Submit</button>
+</form>
+  </div>
 
 <%- include('../partials/footer') %>
 <script>

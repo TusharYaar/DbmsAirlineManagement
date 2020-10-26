@@ -1,0 +1,44 @@
+<%- include('../partials/header') %> 
+<link rel="stylesheet" href="./styles/viewadmincards.css">
+<div class="sidenav">
+    <li><img src="./images/FullLogo.png" id="logo" /></li>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/addairport">Add An Airport</a>
+    <a href="/showairports">Existing Airports</a>
+    <a href="/addflight">Add a Flight</a>
+    <a href="/showflights">Existing Flights</a>
+    <a href="/addcrew">Add Crew</a>
+    <a href="/showusers">Show All Users</a>
+    <a href="/showbookedflights">Booked Flight</a>
+    <a href="/searchflight"> Search Flight </a>
+    <a href="/logout">Logout</a>
+</div>
+
+
+<div class="main">
+    <h2>Existing Flights</h2>
+  <%airports.forEach(function(airport,i){ %>
+     <% if(i%2===0) {%><div class="row"> <% } %>
+    
+  <div class="column">
+ 
+  <div class="card">
+  
+    <h3 class="airportheading"><%=airport.airport_id %></h3> 
+    <p class="description" style="top: 180px;">Airport Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<span><%=airport.airport_name %></span></p>
+  <p class="description" style="left: 40px;top: 230px;">Airport City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+  line-height: 27px;">&nbsp;&nbsp;&nbsp;&nbsp;<%=airport.airport_city %></span></p>
+  <p class="description" style="left: 40px;top: 280px;">Airport State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+  line-height: 27px;">&nbsp;&nbsp;&nbsp;&nbsp;<%=airport.airport_state %></span></p>
+  <p class="description" style="left: 40px;top: 330px;">Short Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+  line-height: 27px;">&nbsp;&nbsp; <%=airport.airport_short%></span></p>
+  
+  </div>
+  </div> 
+  
+  <% if(i%2===1) {%></div> <% } %>
+  
+  <% }) %> 
+  </div>
+  <%- include('../partials/footer') %>
+  

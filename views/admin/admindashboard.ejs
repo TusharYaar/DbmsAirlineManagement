@@ -1,16 +1,18 @@
 <%- include('../partials/header') %>
     <p>This is the
         <h2>Admin</h2> Dashboard </p>
-            <br>
-            <br>
-            <br> Goto <a href="/addairport">Add An Airport </a>
-            <hr> Goto <a href="/showairports"> Show Existing Airports </a>
-            <hr> Goto <a href="/addflight"> Add A Flight </a>
-            <hr> Goto <a href="/showflights"> Show Existing Flights </a>
-            <hr> Goto <a href="/addcrew">add a a crew</a>
-            <hr> Goro <a href="/showusers">Show All Users</a>
-            <hr> goto <a href="/showbookedflights"> Show  booked flights </a> 
-            <hr> goto <a href="/searchflight"> Seach flight </a>
-            <hr>
-            <br>
+        <link rel="stylesheet" href="./styles/sidebar.css">
+        <div class="sidenav">
+          <li><img src="./images/FullLogo.png" id="logo" /></li>
+          <a href="/dashboard">Dashboard</a>
+          <a href="/addairport">Add An Airport</a>
+          <a href="/showairports">Existing Airports</a>
+          <a href="/addflight">Add a Flight</a>
+          <a href="/showflights">Existing Flights</a>
+          <a href="/addcrew">Add Crew</a>
+          <a href="/showusers">Show All Users</a>
+          <a href="/showbookedflights">Booked Flight</a>
+          <a href="/searchflight"> Search Flight </a>
+          <a href="/logout">Logout</a>
+        </div>
             <a href="/logout"> Logout</a>

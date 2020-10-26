@@ -1,0 +1,147 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 5px;
+}
+
+.sidenav > li {
+  height: 100px;
+  width: 100%;
+}
+
+.sidenav a {
+  padding: 10px 10px 10px 16px;
+  text-decoration: none;
+  font-size: 24px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.main {
+  margin-left: 270px; /*Same as the width of the sidenav */
+  font-size: 28px; /*Increased text to enable scrolling */
+  padding: 0px 10px;
+  margin-top: 40px;
+}
+#logo {
+  height: auto;
+  width: 200px;
+  position: fixed;
+}
+
+form {
+  background: #ffffff;
+  margin-left: 500px;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.main > h2 {
+  font-size: 36px;
+  font-weight: bold;
+}
+.cardimage {
+  position: absolute;
+  width: 447px;
+  height: 183.96px;
+  left: 385px;
+  top: 177px;
+
+  background: rgba(38, 135, 141, 0.44);
+  border-radius: 3px;
+}
+.airportheading {
+  position: absolute;
+  width: 386px;
+  height: 50px;
+  left: 45px;
+  top: 30px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  color: #ffffff;
+}
+.description {
+  position: absolute;
+  width: auto;
+  height: 34px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 34px;
+  left: 40px;
+  top: 230px;
+  color: #000000;
+}
+.description span {
+  text-transform: capitalize;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 27px;
+}
+
+/* Float two columns side by side */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px 50px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 0px -5px;
+  margin-bottom: 500px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.19), 0px -3px 20px rgba(0, 0, 0, 0.19);
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 18px;
+  position: absolute;
+  width: 447px;
+  height: 441px;
+  background-image: url("../images/cardwave.png");
+  background-repeat: no-repeat;
+  /* left: 385px; 
+top: 177px ; */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}

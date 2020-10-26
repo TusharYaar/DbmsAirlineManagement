@@ -1,5 +1,3 @@
-console.log("COnnected");
-
 $("#departure_time").on("change", function () {
   Duration();
 });

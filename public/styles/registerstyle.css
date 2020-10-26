@@ -4,12 +4,13 @@ body {
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+  padding-top: 90px;
 }
 
 .container {
   margin: auto;
   padding-top: 20px;
-  margin-left: 800px;
+  margin-right: 50px;
   padding: auto;
   width: 40%;
   height: 70%;

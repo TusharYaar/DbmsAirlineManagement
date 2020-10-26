@@ -1,0 +1,107 @@
+body {
+  font-family: "Lato", sans-serif;
+  padding-top: 20px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 5px;
+}
+.sidenav > li {
+  height: 100px;
+  width: 100%;
+}
+.sidenav a {
+  padding: 10px 10px 10px 16px;
+  text-decoration: none;
+  font-size: 24px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba;
+}
+
+.button1:hover {
+  background-color: #008cba;
+  color: white;
+}
+.main {
+  margin-left: 210px; /*Same as the width of the sidenav */
+  font-size: 28px; /*Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+#logo {
+  height: auto;
+  width: 200px;
+  position: fixed;
+}
+
+form {
+  background: #ffffff;
+  margin-left: 50px;
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 36px;
+  font-weight: bold;
+}
+input,
+textarea,
+select,
+option {
+  background: none !important;
+  border-top: #0948f5 1px solid !important;
+  border-left: #0948f5 1px solid !important;
+  border-bottom: #0948f5 3px solid !important;
+  border-right: #0948f5 3px solid !important;
+  border-radius: 2px !important;
+  color: #0948f5 !important;
+  font-size: 16px;
+  padding: 5px;
+}
+
+input {
+  width: 80%;
+  padding: 5px;
+  margin: 8px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}

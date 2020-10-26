@@ -9,7 +9,9 @@ table {
   display: none;
   opacity: 0;
 }
-
+body {
+  padding-top: 90px;
+}
 #root {
   display: flex;
   align-items: center;

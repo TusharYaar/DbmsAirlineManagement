@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-<p>This is the Add Airport page</p>
+<!-- <p>This is the Add Airport page</p>
 <form action="/addairport" method="post">
   Airport Name:
   <input type="text" required name="airport_name" maxlength="35" /> <br />
@@ -9,6 +9,58 @@
   <input type="text" required name="airport_state" maxlength="35" /> <br />
   ShortForm: <input type="text" required name="airport_short" maxlength="4" />
   <button type="submit">Submit</button>
-</form>
+</form> -->
+<link rel="stylesheet" href="./styles/sidebar.css">
+<div class="sidenav">
+  <li><img src="./images/FullLogo.png" id="logo" /></li>
+  <a href="/dashboard">Dashboard</a>
+  <a href="/addairport">Add An Airport</a>
+  <a href="/showairports">Existing Airports</a>
+  <a href="/addflight">Add a Flight</a>
+  <a href="/showflights">Existing Flights</a>
+  <a href="/addcrew">Add Crew</a>
+  <a href="/showusers">Show All Users</a>
+  <a href="/showbookedflights">Booked Flight</a>
+  <a href="/searchflight"> Search Flight </a>
+  <a href="/logout">Logout</a>
+</div>
 
+<div class="main">
+  <form action="/addairport" method="post">
+    <h3>ADD AIRPORT</h3>
+    <div class="row">
+      <div class="col-md-12 small-centered">
+        <div class="row">
+          <div class="col-md-12">
+            <input
+              type="text"
+              placeholder="AIRPORT NAME"
+              autocomplete="off" required name="airport_name" maxlength="35"
+            />
+          </div>
+          <div class="col-md-12">
+            <input type="text" placeholder="AIRPORT CITY" autocomplete="off" required name="airport_city" maxlength="35" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <input type="text" placeholder="AIRPORT STATE" autocomplete="off" required name="airport_state" maxlength="35"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <input type="text" placeholder="AIRPORT SHORTFORM" autocomplete="off" required name="airport_short" maxlength="4"/>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <button class="button button1">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 <p>Goto <a href="/dashboard">DashBoard</a></p>
+<%- include('../partials/footer') %>

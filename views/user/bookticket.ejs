@@ -1,7 +1,17 @@
 <%- include('../partials/header') %>
 <link rel="stylesheet" href="/styles/bookticket.css">
 <script src="/javascripts/bookticket.js"></script>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/searchflight">
+        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+    </a>
+    <% if (currentUser===null) {%> 
+    <span class="navbar-text"><a href="login">Login</a> <a href="/register" class="mx-4"> Register </a> </span>
+    <%} else {%>
+        <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
+        <% }%>
 
+</nav>
 <div class="container flight_details row animate__animated animate__fadeInDown">
 <h2 class="col-1"> <%=flight[0].flight_number %></h2>
 <h3 class="text-capitalize"><%=flight[0].dep_city%>(<%=flight[0].dep_short%>) 

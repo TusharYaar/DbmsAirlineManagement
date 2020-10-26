@@ -6,6 +6,7 @@ body {
   background-image: url(../images/HomeBackground-min.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 90px;
 }
 
 label {
