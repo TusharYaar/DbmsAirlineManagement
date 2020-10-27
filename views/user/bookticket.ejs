@@ -3,7 +3,7 @@
 <script src="/javascripts/bookticket.js"></script>
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="/searchflight">
-        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+        <img src="../images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
     </a>
     <% if (currentUser===null) {%> 
     <span class="navbar-text"><a href="login">Login</a> <a href="/register" class="mx-4"> Register </a> </span>
@@ -22,8 +22,8 @@
 </div>
 <%var seatBooked = []; seats.forEach(function(seat) {seatBooked.push(seat["seat_number"]);}); seatBooked.sort();%>
 <form action="/searchflight/<%=flight[0].flight_number%>" method="post" >
-    <div class="row mt-5 ml-5 ">
-    <div class="cabin col-5 animate__animated animate__fadeInLeft ml-5">
+    <div class="row mt-5 ml-5">
+    <div class="cabin col-5 animate__animated animate__fadeInLeft">
         <ol>
             <%  for(i=1;i<49 ;i++){if((i-1)%6===0){ %>
             <li class="row row--<%=i%>">
@@ -45,7 +45,7 @@
     </div>
     Value:  &#8377;<span id="value_f"></span>
     <br>
-    <button type="submit" id="submitButton"class="btn btn-dark">Submit</button>
+    <button type="submit" id="submitButton"class="btn btn-dark" disabled>Submit</button>
     </div>
     <div class="col-4 legend_parent">
         <div class="seat_status animate__animated animate__fadeInRight ">
