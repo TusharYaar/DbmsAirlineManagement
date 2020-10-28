@@ -137,10 +137,18 @@ body {
   height: 441px;
   background-image: url("../images/cardwave.png");
   background-repeat: no-repeat;
-  /* left: 385px; 
-top: 177px ; */
 }
-
+.card > h3 {
+  text-align: center;
+}
+.card:hover {
+  background-color: #26878d;
+  transition: all 0.3s;
+  margin-top: -10px;
+}
+.card:hover p {
+  color: rgba(255, 255, 255, 0.87);
+}
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;

@@ -1,0 +1,128 @@
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.square {
+  position: absolute;
+  width: 48px;
+  height: 43px;
+  left: 45px;
+  top: 100px;
+
+  background: #00ff85;
+  border-radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 0px !important;
+}
+.cardimage {
+  position: absolute;
+  width: 447px;
+  height: 183.96px;
+  left: 385px;
+  top: 177px;
+  background: rgba(38, 135, 141, 0.44);
+  border-radius: 3px;
+}
+.airportheading {
+  position: absolute;
+  width: 386px;
+  height: 50px;
+  left: 45px;
+  top: 30px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  color: #ffffff;
+}
+.description {
+  position: absolute;
+  width: 412px;
+  height: 59px;
+  left: 423px;
+  top: 208px;
+
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 59px;
+  color: #000000;
+}
+.description1 {
+  position: absolute;
+  width: 412px;
+  height: 59px;
+  left: 423px;
+  top: 208px;
+
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 59px;
+  color: #000000;
+}
+/* Float two columns side by side */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px 60px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 0px -5px;
+  margin-bottom: 250px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  position: absolute;
+  width: 1100px;
+  height: 214px;
+  background: #ffffff;
+  box-shadow: 1px -2px 6px rgba(0, 0, 0, 0.25), -1px 1px 4px rgba(0, 0, 0, 0.25);
+}
+.lottie1 {
+  margin-top: 20px;
+  margin-left: 850px;
+}
+.lottie2 {
+  margin-top: 70px;
+}
+.lottie3 {
+  margin-top: 100px;
+  margin-left: 70px;
+}
+.card1 {
+  position: absolute;
+  width: 451px;
+  height: 343px;
+  background: #ffffff;
+  box-shadow: 1px -2px 6px rgba(0, 0, 0, 0.25), -1px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}

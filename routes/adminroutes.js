@@ -12,8 +12,8 @@ router.get("/showusers", middleware.checkAdmin, function (req, res) {
     sql += " " + req.query.order;
   }
   connection.query(sql, function (err, result, fields) {
-    // res.render("./admin/showusers", { data: result });
-    res.send(result);
+    res.render("./admin/showusers", { data: result });
+    // res.send(result);
   });
 });
 

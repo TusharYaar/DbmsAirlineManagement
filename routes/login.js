@@ -20,7 +20,42 @@ router.get("/register", middleware.isLoggedIn, function (req, res) {
 
 router.get("/dashboard", middleware.sessionChecker, function (req, res) {
   if (req.session.usertype == "admin") {
-    res.render("./admin/admindashboard");
+    var data = new Object();
+    connection.query("SELECT COUNT(userid) as usercount FROM userinfo where usertype = 'user'", function (err, usercount, fields) {
+      if (err) {
+        console.log(err);
+        req.flash("error", "Error fetching user number");
+        res.redirect("/dashboard");
+      } else {
+        data.usercount = usercount[0].usercount;
+        connection.query("SELECT SUM(price) as price, count(*) as seatcount FROM flight JOIN bookedflight ON bookedflight.flight_number = flight.flight_number", function (err, flightcount, fields) {
+          if (err) {
+            console.log(err);
+            req.flash("error", "Error fetching price Details");
+            res.redirect("/dashboard");
+          } else {
+            data.price = flightcount[0].price;
+            data.seatcount = flightcount[0].seatcount;
+            connection.query("SELECT count(*) as aircount from airport", function (err, aircount, fields) {
+              if (err) {
+                console.log(err);
+                req.flash("error", "Error fetching airport number");
+                res.redirect("/dashboard");
+              } else {
+                data.aircount = aircount[0].aircount;
+                var d = new Date();
+                d = d.toISOString().slice(0, 10);
+                connection.query("SELECT count(*) as activeflight FROM flight where departure_date >= ? ", d, function (err, activeflight, fields) {
+                  data.activeflight = activeflight[0].activeflight;
+                  // console.log(data);
+                  res.render("./admin/admindashboard", { data: data });
+                });
+              }
+            });
+          }
+        });
+      }
+    });
   } else if (req.session.usertype == "crew") {
     res.render("./crew/crewdashboard");
   } else if (req.session.usertype == "user") {

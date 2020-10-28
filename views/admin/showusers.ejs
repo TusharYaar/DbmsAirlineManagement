@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 <!-- ======================================================================= -->
 
-<link rel="stylesheet" href="./styles/sidebar.css">
+<link rel="stylesheet" href="./styles/viewadmincards.css">
 <div class="sidenav">
     <li><img src="./images/FullLogo.png" id="logo" /></li>
     <a href="/dashboard">Dashboard</a>
@@ -15,5 +15,71 @@
     <a href="/searchflight"> Search Flight </a>
     <a href="/logout">Logout</a>
   </div>
+  <form id="sortfunc" action="/showusers" method="get">    
+    <select name="orderby" id="">
+    <option value="userid">UserID</option>
+    <option value="dob">Date of Birth</option>
+    <option value="first_name">First Name</option>
+    <option value="last_name">Last Name</option>
+    </select>    
+    <select name="order" >
+    <option value="ASC">Ascending Order</option>
+    <option value="DESC">Descending Order</option>
+    </select>
+    <button type="submit">Submit</button>
+    </form>
+
+
+  <div class="main">
+    <h2>All Users</h2>
+    <%data.forEach(function(user,i){ %>
+      <% if(i%2===0) {%><div class="row"> <% } %>
+     
+<div class="column">
+  <a href="/showusers/<%=user.userid%>">
+  <div class="card" style="overflow-x: hidden">
+    <p  style="margin-top: 60px;
+    text-align: center;
+width: auto;
+height: 34px;
+font-family: Open Sans;
+font-style: normal;
+color: white;
+font-weight: 600;
+font-size: 40px;
+line-height: 34px;
+text-transform: capitalize;"><%= user.first_name%> <%= user.last_name%></p>
+<p class="description" style="left: 40px;top: 160px;">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+line-height: 27px;"><%=user.email%></span></p>
+<p class="description" style="left: 40px;top: 200px;">UserID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+  line-height: 27px;"><%=user.userid%></span></p>
+<p class="description" style="left: 40px;top: 240px;">Phone&nbsp;&nbsp;No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+line-height: 27px;"><%= user.phone%></span></p>
+<p class="description" style="left: 40px;top: 280px;">Passport&nbsp;&nbsp;No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+line-height: 27px;"><%=user.passport_number%></span></p>
+<p class="description" style="left: 40px;top: 320px;">Occupation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+line-height: 27px;">&nbsp;&nbsp;<%=user.occupation%></span></p>
+<p class="description" style="left: 40px;top: 360px;">D.O.B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: Open Sans; font-style: normal;font-weight: 600;font-size: 15px;
+line-height: 27px;"><%=user.dob.toDateString()%></span></p>
+
+  </div>
+</a>
+</div> 
+
+<% if(i%2===1) {%></div> <% } %>
+
+<% }) %> 
+
+  </div>
+
+
+
+
+
+
+
+
+
+
 
   <script src="./javascripts/addflight.js"></script>

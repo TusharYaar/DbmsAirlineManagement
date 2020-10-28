@@ -1,8 +1,8 @@
 <%- include('../partials/header') %>
-    <p>This is the
-        <h2>Admin</h2> Dashboard </p>
         <link rel="stylesheet" href="./styles/sidebar.css">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <div class="sidenav">
+        <link rel="stylesheet" href="./styles/admindashboard.css">
           <li><img src="./images/FullLogo.png" id="logo" /></li>
           <a href="/dashboard">Dashboard</a>
           <a href="/addairport">Add An Airport</a>
@@ -16,3 +16,105 @@
           <a href="/logout">Logout</a>
         </div>
             <a href="/logout"> Logout</a>
+
+
+            <div class="main">
+              <h2 style="display: inline">&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</h2>
+        
+        <div class="row">
+          <div class="column">
+            <div class="card">
+            
+              <p class="description" style="left: 30px;top: 0px;">Total Number Of Users</p>
+              <p class="square"><span style="position: absolute;
+        width: 386px;
+        height: 54px;
+        left: 55px;
+        top: 0px;
+        
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 54px;
+        
+        color: rgba(0, 0, 0, 0.6);
+        ">&nbsp;&nbsp;&nbsp;&nbsp;<%=data.usercount%>&nbsp;Total&nbsp;Users</span></p>
+        <div class="lottie1"><lottie-player src="https://assets3.lottiefiles.com/packages/lf20_v43587.json"  background="transparent"  speed="1"  style="width: 180px; height: 180px;"  loop  autoplay></lottie-player></div>
+            </div>
+          </div> 
+        
+        </div>
+        
+        <div class="row">
+          <div class="column">
+            <div class="card1">
+              
+              <p class="description" style="left: 30px; top: 0px; ">Total Earnings</p>
+            
+        <div class="lottie2">
+        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_4wDd2K.json"  background="transparent"  speed="1"  style="width: 250px; height: 250px;"  loop  autoplay></lottie-player><span style="position: absolute;
+        width: 268px;
+        height: 34px;
+        left: 230px;
+        top: 150px;
+        
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 34px;
+        /* identical to box height */
+        
+        
+        color: rgba(0, 0, 0, 0.42)">Total&nbsp;Profit&nbsp;is:</span>
+        </div>
+        <p style="position: absolute;
+        width: 268px;
+        height: 34px;
+        left: 270px;
+        top: 200px;
+        
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 34px; color: rgba(0, 0, 0, 0.42);">Rs. <%=data.price%></p>
+        </p>
+          </div>
+        </div>
+        
+        
+        <div class="column">
+            <div class="card1">
+              
+              <p class="description1" style="left: 30px; top: 0px; ">Total No. Of Airports: <%=data.aircount%></p>
+              <p style="position: absolute;
+              width: auto;
+              height: 34px;
+              left: 50px;
+              top: 50px;
+              
+              font-family: Open Sans;
+              font-style: normal;
+              font-weight: 600;
+              font-size: 25px;
+              line-height: 34px; color: rgba(0, 0, 0, 0.42);"><%=data.seatcount%> Seats Booked </p>
+              </p>
+        <p class="description1" style="left: 30px; top: 90px; ">Total No. Of Flights:</p>
+            <p style="position: absolute;
+        width: 268px;
+        height: 34px;
+        left: 50px;
+        top: 140px;
+        
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 34px; color: rgba(0, 0, 0, 0.42);"><%=data.activeflight%> Active Flights</p>
+        <div class="lottie3"><lottie-player src="https://assets3.lottiefiles.com/packages/lf20_jhu1lqdz.json"  background="transparent"  speed="3"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player></div>
+          </div>
+        </div>
+        </div>
+      </div>
