@@ -24,7 +24,8 @@ router.get("/showusers/:user", middleware.checkAdmin, function (req, res) {
       req.flash("error", "User Cannot Be Shown");
       res.redirect("/dashboard");
     } else {
-      res.send(result);
+      res.render("./admin/viewuserdetails", { result: result });
+      // res.send(result);
     }
   });
 });

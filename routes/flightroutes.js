@@ -74,7 +74,7 @@ router.get("/showflights", middleware.checkAdmin, function (req, res) {
 router.get("/showflights/:flight", middleware.checkAdmin, function (req, res) {
   flightid = req.params.flight;
   sql =
-    "SELECT duration, flight.flight_number,departure_date,departure_time,arrival_date,arrival_time, ap_des.airport_name as des_name, " +
+    "SELECT duration,crew_id, flight.flight_number,departure_date,departure_time,arrival_date,arrival_time, ap_des.airport_name as des_name, " +
     "ap_des.airport_state as des_state, ap_des.airport_city as des_city, ap_des.airport_short as des_short, " +
     "ap_dep.airport_name as dep_name, ap_dep.airport_state as dep_state, ap_dep.airport_city as dep_city, ap_dep.airport_short as dep_short, " +
     "first_name, last_name, email, phone, occupation from flight " +
@@ -94,7 +94,8 @@ router.get("/showflights/:flight", middleware.checkAdmin, function (req, res) {
           req.flash("error", "Error while featching the details of passenger");
           res.redirect("/dashboard");
         } else {
-          res.send({ crew: crew, User: users });
+          res.render("./admin/viewflightdetails", { crew: crew, User: users });
+          // res.send({ crew: crew, User: users });
         }
       });
     }

@@ -1,0 +1,84 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="../styles/viewadmindetails.css">
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/searchflight">
+        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+    </a>
+        <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
+</nav>
+<section>
+  
+    <h1>Arrival Flights</h1>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+              <th>Flight No.</th>
+            <th>From</th>
+            <th>Departure Date</th>
+            <th>Departure Time</th>
+            <th>Arrival Date</th>
+            <th>Arrival time</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <%desairport.forEach(function(airport){%>
+          <tr>
+            <td><a href="/showflights/<%=airport.flight_number%>"><%=airport.flight_number%></a></td>
+              <td><a href="/showairports/<%=airport.depid%>"><%=airport.depname%>(<%=airport.depshort%>)</a> </td>
+            <td><%=airport.departure_date.toDateString()%></td>
+            <td><%=airport.departure_time.slice(0,5)%></td>
+            <td><%=airport.arrival_date.toDateString()%></td>
+            <td><%=airport.arrival_time.slice(0,5)%></td>
+          </tr>
+          <% })%>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  
+  <section>
+    
+    <h1>Departure Flights</h1>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+              <th>Flight No.</th>
+            <th>To</th>
+            <th>Departure Date</th>
+            <th>Departure Time</th>
+            <th>Arrival Date</th>
+            <th>Arrival time</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <%depairport.forEach(function(airport){%>
+                         
+          <tr>
+              <td><a href="/showflights/<%=airport.flight_number%>"><%=airport.flight_number%></a></td>
+            <td> <a href="/showairports/<%=airport.desid%>"><%=airport.desname%>(<%=airport.desshort%>) </a></td>
+            <td><%=airport.departure_date.toDateString()%></td>
+            <td><%=airport.departure_time.slice(0,5)%></td>
+            <td><%=airport.arrival_date.toDateString()%></td>
+            <td><%=airport.arrival_time.slice(0,5)%></td>
+          </tr>
+           <%})%>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+
+
+<%- include('../partials/footer') %>

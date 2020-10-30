@@ -1,6 +1,74 @@
 <%- include('../partials/header') %>
-
-
+<link rel="stylesheet" href="../styles/viewadmindetails.css">
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/searchflight">
+        <img src="../images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+    </a>
+        <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
+</nav>
+<section class="animate__animated animate__fadeInDown">  
+    <h1>Passenger Details</h1>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>User id</th>
+            <th>Username</th>
+            <th>Passport No.</th>
+            <th>Seat No.</th>
+            <th>Ticket No.</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <%User.forEach(function(user){ %>
+          <tr>
+            <td><%=user.userid%></td>
+            <td><%=user.username%></td>
+            <td><%=user.passport_number%></td>
+            <td><%=user.seat_number%></td>
+            <td><%=user.ticket_number%></td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  
+  <section class="animate__animated animate__fadeInUp">
+    <h1>Crew Details</h1>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>Crew Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Occupation</th>
+            
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <%crew.forEach(function(crew){%>
+          <tr>
+            <td><%=crew.crew_id%></td>
+            <td><%=crew.first_name%> </td>
+            <td><%=crew.last_name%></td>
+            <td><%=crew.occupation%></td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
 
 

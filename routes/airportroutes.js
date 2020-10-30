@@ -43,23 +43,32 @@ router.get("/showairports", middleware.checkAdmin, function (req, res) {
   });
 });
 router.get("/showairports/:airport", middleware.checkAdmin, function (req, res) {
-  connection.query("SELECT * FROM airport JOIN flight ON flight.departure = airport_id WHERE airport_id = ? ", req.params.airport, function (err, depairport, fields) {
-    if (err) {
-      console.log(err);
-      req.flash("error", "Airport Cannot Be Displayed, Encountered Some Error");
-      res.redirect("/dashboard");
-    } else {
-      connection.query("SELECT * FROM airport JOIN flight ON flight.destination = airport_id WHERE airport_id = ? ", req.params.airport, function (err, result, fields) {
-        if (err) {
-          console.log(err);
-          req.flash("error", "Airport Cannot Be Displayed, Encountered Some Error");
-          res.redirect("/dashboard");
-        } else {
-          res.send({ depairport: depairport, desairport: result });
-        }
-      });
+  connection.query(
+    "SELECT flight_number, curap.airport_id as curid, curap.airport_name as curname, curap.airport_state as curstate, curap.airport_short as curshort,desap.airport_id as desid, desap.airport_name as desname, desap.airport_short as desshort, departure_time, departure_date, arrival_date, arrival_time from flight JOIN airport as curap ON flight.departure = curap.airport_id JOIN airport as desap ON flight.destination = desap.airport_id where curap.airport_id = ? ",
+    req.params.airport,
+    function (err, depairport, fields) {
+      if (err) {
+        console.log(err);
+        req.flash("error", "Airport Cannot Be Displayed, Encountered Some Error");
+        res.redirect("/dashboard");
+      } else {
+        connection.query(
+          "SELECT flight_number, curap.airport_id as curid, curap.airport_name as curname, curap.airport_state as curstate, curap.airport_short as curshort, depap.airport_name as depname, depap.airport_short as depshort, depap.airport_id as depid, departure_time, departure_date, arrival_date, arrival_time from flight JOIN airport as curap ON flight.destination = curap.airport_id JOIN airport as depap ON flight.departure = depap.airport_id where curap.airport_id = ? ",
+          req.params.airport,
+          function (err, result, fields) {
+            if (err) {
+              console.log(err);
+              req.flash("error", "Airport Cannot Be Displayed, Encountered Some Error");
+              res.redirect("/dashboard");
+            } else {
+              res.render("./admin/viewairportdetails", { depairport: depairport, desairport: result });
+              // res.send({ depairport: depairport, desairport: result });
+            }
+          }
+        );
+      }
     }
-  });
+  );
 });
 
 module.exports = router;
