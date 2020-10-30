@@ -1,5 +1,4 @@
 <%- include('../partials/header') %>
-<!-- ======================================================================= -->
 
 <link rel="stylesheet" href="./styles/viewadmincards.css">
 <div class="sidenav">
@@ -15,6 +14,7 @@
     <a href="/searchflight"> Search Flight </a>
     <a href="/logout">Logout</a>
   </div>
+  
   <form id="sortfunc" action="/showusers" method="get">    
     <select name="orderby" id="">
     <option value="userid">UserID</option>
@@ -26,7 +26,7 @@
     <option value="ASC">Ascending Order</option>
     <option value="DESC">Descending Order</option>
     </select>
-    <button type="submit">Submit</button>
+    <button type="submit" class="button1" >Submit</button>
     </form>
 
 

@@ -157,3 +157,31 @@ body {
     font-size: 18px;
   }
 }
+
+select,
+option,
+.button1 {
+  margin: 20px;
+  height: 50px;
+  background: none;
+  border-top: #0948f5 1px solid;
+  border-left: #0948f5 1px solid;
+  border-bottom: #0948f5 3px solid;
+  border-right: #0948f5 3px solid;
+  border-radius: 2px;
+  color: #0948f5;
+}
+
+.button1 {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px;
+  width: 100px;
+}
+.button1:hover {
+  margin-top: -15px;
+  background-color: rgba(0, 139, 186);
+  color: white;
+}
