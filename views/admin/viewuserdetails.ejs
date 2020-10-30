@@ -1,12 +1,50 @@
 <%- include('../partials/header') %>
 <link rel="stylesheet" href="../styles/viewadmindetails.css">
-<nav class="navbar navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-dark bg-dark fixed-top animate__animated animate__slideInDown">
     <a class="navbar-brand" href="/searchflight">
-        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+        <img src="../images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
     </a>
         <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
 </nav>
-
+<section class="animate__animated animate__fadeInUp">
+  
+    <h1>User Travel Record</h1>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>Flight(T No.)</th>
+            <th>Username</th>
+            <th>From</th>
+            <th>Departure Date</th>
+            <th>Departure Time</th>
+            <th>To</th>
+            <th>Arrival Date</th>
+            <th>Arrival time</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <%result.forEach(function(data){%>
+          <tr>
+              <td><a href="/showflights/<%=data.flight_number%>"><%=data.flight_number%></a> ( <%=data.ticket_number%> )</td>
+              <td><%=data.username%></td>
+            <td><%=data.depname%> ( <%=data.depshort%> )</td>
+            <td><%=data.departure_date.toDateString()%></td>
+            <td><%=data.departure_time.slice(0,5)%></td>
+            <td><%=data.desname%> ( <%=data.desshort%> )</td>
+            <td><%=data.arrival_date.toDateString()%></td>
+            <td><%=data.arrival_time.slice(0,5)%></td>
+          </tr>
+            <%})%>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
 
 
 

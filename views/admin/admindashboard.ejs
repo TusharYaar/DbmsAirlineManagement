@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
         <link rel="stylesheet" href="./styles/sidebar.css">
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-        <div class="sidenav">
+        <div class="sidenav animate__animated <% if(success && success.length > 0) {%>animate__fadeInLeft <%}%>">
         <link rel="stylesheet" href="./styles/admindashboard.css">
           <li><img src="./images/FullLogo.png" id="logo" /></li>
           <a href="/dashboard">Dashboard</a>
@@ -15,7 +15,6 @@
           <a href="/searchflight"> Search Flight </a>
           <a href="/logout">Logout</a>
         </div>
-            <a href="/logout"> Logout</a>
 
 
             <div class="main">
@@ -23,7 +22,7 @@
         
         <div class="row">
           <div class="column">
-            <div class="card">
+            <div class="card animate__animated animate__slideInDown">
             
               <p class="description" style="left: 30px;top: 0px;">Total Number Of Users</p>
               <p class="square"><span style="position: absolute;
@@ -48,7 +47,7 @@
         
         <div class="row">
           <div class="column">
-            <div class="card1">
+            <div class="card1 animate__animated animate__slideInUp">
               
               <p class="description" style="left: 30px; top: 0px; ">Total Earnings</p>
             
@@ -86,7 +85,7 @@
         
         
         <div class="column">
-            <div class="card1">
+            <div class="card1 animate__animated animate__jackInTheBox">
               
               <p class="description1" style="left: 30px; top: 0px; ">Total No. Of Airports: <%=data.aircount%></p>
               <p style="position: absolute;

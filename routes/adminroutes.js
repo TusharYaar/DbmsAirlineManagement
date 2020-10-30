@@ -18,16 +18,20 @@ router.get("/showusers", middleware.checkAdmin, function (req, res) {
 });
 
 router.get("/showusers/:user", middleware.checkAdmin, function (req, res) {
-  connection.query("SELECT * from bookedflight JOIN flight ON flight.flight_number = bookedflight.flight_number WHERE bookedflight.userid = ?", req.params.user, function (err, result, fields) {
-    if (err) {
-      console.log(err);
-      req.flash("error", "User Cannot Be Shown");
-      res.redirect("/dashboard");
-    } else {
-      res.render("./admin/viewuserdetails", { result: result });
-      // res.send(result);
+  connection.query(
+    "SELECT ticket_number, userid, flight.flight_number, username, desap.airport_name as desname, desap.airport_short as desshort,	depap.airport_name as depname, depap.airport_short as depshort, departure_date, departure_time, arrival_date, arrival_time from bookedflight JOIN flight ON flight.flight_number = bookedflight.flight_number JOIN airport as desap ON desap.airport_id = flight.destination JOIN airport as depap ON depap.airport_id = flight.departure WHERE bookedflight.userid = ?",
+    req.params.user,
+    function (err, result, fields) {
+      if (err) {
+        console.log(err);
+        req.flash("error", "User Cannot Be Shown");
+        res.redirect("/dashboard");
+      } else {
+        res.render("./admin/viewuserdetails", { result: result });
+        // res.send(result);
+      }
     }
-  });
+  );
 });
 
 router.get("/addcrew", middleware.checkAdmin, function (req, res) {
