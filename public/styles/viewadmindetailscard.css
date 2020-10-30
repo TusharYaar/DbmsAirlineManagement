@@ -1,0 +1,189 @@
+.column {
+  float: left;
+  width: 25%;
+  padding: 80px 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 00px -5px;
+  margin-bottom: 80px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 2000px;
+  }
+}
+.card {
+  position: absolute;
+  width: 1215px;
+  height: 185px;
+  left: 123px;
+  top: 50px;
+  background: #ffffff;
+  box-shadow: -5px -5px 11px rgba(113, 113, 113, 0.25), 5px 5px 11px rgba(113, 113, 113, 0.25);
+}
+.flightid {
+  position: absolute;
+  width: 67px;
+  height: 82px;
+  left: 60px;
+  top: 50px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 82px;
+  color: #000000;
+}
+
+.departuredate {
+  position: absolute;
+  width: 202px;
+  height: 35px;
+  left: 170px;
+  top: 20px;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 35px;
+
+  color: #000000;
+}
+
+.photo1 {
+  position: absolute;
+  width: 69.5px;
+  height: 21.5px;
+  left: 195px;
+  top: 80px;
+}
+.photo2 {
+  position: absolute;
+  width: 69.5px;
+  height: 21.5px;
+  left: 550px;
+  top: 60px;
+}
+.photo3 {
+  position: absolute;
+  width: 69.5px;
+  height: 21.5px;
+  left: 955px;
+  top: 80px;
+}
+
+.departuretime {
+  position: absolute;
+  width: 91px;
+  height: 35px;
+  left: 190px;
+  top: 130px;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #000000;
+}
+
+.departuresf {
+  position: absolute;
+  width: 91px;
+  height: 35px;
+  left: 400px;
+  top: 20px;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #000000;
+}
+
+.departurecity {
+  position: absolute;
+  width: 91px;
+  height: 35px;
+  left: 400px;
+  top: 130px;
+  text-transform: capitalize;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 35px;
+
+  color: #000000;
+}
+
+.arrivalsf {
+  position: absolute;
+  width: 91px;
+  height: 35px;
+  left: 700px;
+  top: 20px;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #000000;
+}
+
+.arrivalcity {
+  position: absolute;
+  width: 91px;
+  height: 35px;
+  left: 700px;
+  top: 130px;
+  text-transform: capitalize;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 35px;
+
+  color: #000000;
+}
+
+.arrivaldate {
+  position: absolute;
+  width: 202px;
+  height: 35px;
+  left: 930px;
+  top: 20px;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 35px;
+
+  color: #000000;
+}
+
+.arrivaltime {
+  position: absolute;
+  width: 91px;
+  height: 35px;
+  left: 950px;
+  top: 130px;
+  font-family: Droid Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #000000;
+}

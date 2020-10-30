@@ -19,7 +19,7 @@ router.get("/showusers", middleware.checkAdmin, function (req, res) {
 
 router.get("/showusers/:user", middleware.checkAdmin, function (req, res) {
   connection.query(
-    "SELECT ticket_number, userid, flight.flight_number, username, desap.airport_name as desname, desap.airport_short as desshort,	depap.airport_name as depname, depap.airport_short as depshort, departure_date, departure_time, arrival_date, arrival_time from bookedflight JOIN flight ON flight.flight_number = bookedflight.flight_number JOIN airport as desap ON desap.airport_id = flight.destination JOIN airport as depap ON depap.airport_id = flight.departure WHERE bookedflight.userid = ?",
+    "SELECT ticket_number, usr.userid, usr.dob, usr.first_name, usr.last_name, usr.passport_number, flight.flight_number, username, desap.airport_name as desname, desap.airport_short as desshort, depap.airport_name as depname, depap.airport_short as depshort, departure_date, departure_time, arrival_date, arrival_time, desap.airport_id as desid, depap.airport_id as depid from bookedflight JOIN flight ON flight.flight_number = bookedflight.flight_number JOIN airport as desap ON desap.airport_id = flight.destination JOIN userinfo as usr ON usr.userid = bookedflight.userid JOIN airport as depap ON depap.airport_id = flight.departure WHERE bookedflight.userid = ?",
     req.params.user,
     function (err, result, fields) {
       if (err) {

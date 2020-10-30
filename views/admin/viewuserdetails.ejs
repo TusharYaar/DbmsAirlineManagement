@@ -1,4 +1,162 @@
 <%- include('../partials/header') %>
+<style>
+    .column {
+  float: left;
+  width: 25%;
+  padding: 80px 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+/* Clear floats after the columns */
+.row {margin-top: 80px;
+margin-left: 100px;
+width: 70%;}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card {
+width: 1200px;
+height: 185px;
+/* top: 284px; */
+
+background: #FFFFFF;
+box-shadow: -5px -5px 11px rgba(113, 113, 113, 0.25), 5px 5px 11px rgba(113, 113, 113, 0.25);
+}
+
+
+.airportsf{
+  position: absolute;
+width: 167px;
+height: 82px;
+ left: 50px;
+top: 0px; 
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 25px;
+line-height: 82px;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+.airportsf1{
+
+  position: absolute;
+width: 152px;
+height: 35px;
+left: 70px;
+top: 120px;
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+
+
+.airportname{
+  position: absolute;
+width: 191px;
+height: 35px;
+left: 270px;
+top: 24px;
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 25px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.airportname1{
+  position: absolute;
+width: 291px;
+height: 35px;
+left: 240px;
+top: 120px;
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.airportcity{
+    position: absolute;
+width: 191px;
+height: 35px;
+left: 600px;
+top: 24px;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 25px;
+line-height: 35px;
+color: #000000;
+}
+
+.airportcity1{
+    position: absolute;
+width: 191px;
+height: 35px;
+left: 610px;
+top: 120px;
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.airportstate{
+  position: absolute;
+width: 191px;
+height: 35px;
+left: 950px;
+top: 24px;
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 25px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.airportstate1{
+  position: absolute;
+width: 252px;
+height: 35px;
+left: 910px;
+top: 120px;
+text-transform: capitalize;
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+color: #000000;
+}
+
+</style>
 <link rel="stylesheet" href="../styles/viewadmindetails.css">
 <nav class="navbar navbar-dark bg-dark fixed-top animate__animated animate__slideInDown">
     <a class="navbar-brand" href="/searchflight">
@@ -6,9 +164,36 @@
     </a>
         <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
 </nav>
-<section class="animate__animated animate__fadeInUp">
-  
+
+    <div class="row">
+        <div class="column">
+          <div class="card">
+            <div class="airportsf">
+            User&nbsp;Id</div>
+            <div class="airportsf1">
+            <%=result[0].userid%></div>
+          
+            <div class="airportname">
+            User&nbsp;Name</div>
+            <div class="airportname1">
+            <%=result[0].first_name%>&nbsp;<%=result[0].last_name%></div>
+            <div class="airportcity">
+              Passport&nbsp;No.
+            </div>
+              <div class="airportcity1">
+<%=result[0].passport_number%>
+              </div>
+              <div class="airportstate">
+                D.O.B
+              </div>
+              <div class="airportstate1">
+                <%=result[0].dob.toDateString()%>
+              </div>
+          </div>
+        </div>
+      </div>
     <h1>User Travel Record</h1>
+    <section class="animate__animated animate__fadeInUp">
     <div class="tbl-header">
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
@@ -32,10 +217,10 @@
           <tr>
               <td><a href="/showflights/<%=data.flight_number%>"><%=data.flight_number%></a> ( <%=data.ticket_number%> )</td>
               <td><%=data.username%></td>
-            <td><%=data.depname%> ( <%=data.depshort%> )</td>
+            <td><a href="/showairports/<%=data.depid%>"><%=data.depname%> ( <%=data.depshort%> )</a></td>
             <td><%=data.departure_date.toDateString()%></td>
             <td><%=data.departure_time.slice(0,5)%></td>
-            <td><%=data.desname%> ( <%=data.desshort%> )</td>
+            <td><a href="/showairports/<%=data.desid%>"><%=data.desname%> ( <%=data.desshort%> )</a></td>
             <td><%=data.arrival_date.toDateString()%></td>
             <td><%=data.arrival_time.slice(0,5)%></td>
           </tr>

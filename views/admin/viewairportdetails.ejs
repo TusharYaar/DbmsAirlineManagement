@@ -1,12 +1,182 @@
 <%- include('../partials/header') %>
 <link rel="stylesheet" href="../styles/viewadmindetails.css">
+<style>
+  .card {
+  position: absolute;
+width: 1215px;
+height: 185px;
+left: 123px;
+top: 120px;
+
+background: #FFFFFF;
+box-shadow: -5px -5px 11px rgba(113, 113, 113, 0.25), 5px 5px 11px rgba(113, 113, 113, 0.25);
+}
+.airportsf{
+  position: absolute;
+width: 207px;
+height: 42px;
+ left: 20px;
+top: 0px; 
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 82px;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+.airportsf1{
+
+  position: absolute;
+width: 152px;
+height: 35px;
+left: 70px;
+top: 80px;
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+
+
+.airportname{
+  position: absolute;
+width: 191px;
+height: 35px;
+left: 320px;
+top: 24px;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.airportname1{
+  position: absolute;
+width: 300px;
+height: 35px;
+left: 240px;
+top: 80px;
+text-align: center;
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+text-transform: capitalize;
+color: #000000;
+}
+
+.airportcity{
+    position: absolute;
+width: 191px;
+height: 35px;
+left: 650px;
+top: 24px;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 35px;
+color: #000000;
+}
+
+.airportcity1{
+position: absolute;
+width: 191px;
+height: 35px;
+left: 660px;
+top: 80px;
+text-align: center;
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+text-transform: capitalize;
+color: #000000;
+}
+.airportstate{
+  position: absolute;
+width: 191px;
+height: 35px;
+left: 920px;
+top: 24px;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.airportstate1{
+  position: absolute;
+width: 152px;
+height: 35px;
+left: 930px;
+top: 80px;
+text-align: center;
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+text-transform: capitalize;
+color: #000000;
+}
+
+</style>
 <nav class="navbar navbar-dark bg-dark fixed-top animate__animated animate__slideInDown">
     <a class="navbar-brand" href="/searchflight">
-        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+        <img src="../images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
     </a>
         <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
 </nav>
-<section>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <div class="airportsf">
+      Airport&nbsp;Shortname</div>
+      <div class="airportsf1">
+      <%=desairport[0].curshort%></div>
+    
+      <div class="airportname">
+      Airport&nbsp;Name</div>
+      <div class="airportname1">
+      <%=desairport[0].curname%> (<%=desairport[0].curid%>)</div>
+      <div class="airportcity">
+        Airport&nbsp;City
+      </div>
+    
+        <div class="airportcity1">
+          <%=desairport[0].curcity%>
+        </div>
+        <div class="airportstate">
+          Airport&nbsp;State
+        </div>
+        <div class="airportstate1">
+          <%=desairport[0].curstate%>
+        </div>
+  
+
+    </div>
+  </div>
+</div>
+<section class="animate__animated animate__fadeInUp" style="margin-top:370px">
   
     <h1>Arrival Flights</h1>
     <div class="tbl-header">
@@ -42,7 +212,7 @@
   </section>
   
   
-  <section>
+  <section class="animate__animated animate__fadeInDown">
     
     <h1>Departure Flights</h1>
     <div class="tbl-header">

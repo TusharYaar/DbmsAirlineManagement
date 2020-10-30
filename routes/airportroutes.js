@@ -53,7 +53,7 @@ router.get("/showairports/:airport", middleware.checkAdmin, function (req, res) 
         res.redirect("/dashboard");
       } else {
         connection.query(
-          "SELECT flight_number, curap.airport_id as curid, curap.airport_name as curname, curap.airport_state as curstate, curap.airport_short as curshort, depap.airport_name as depname, depap.airport_short as depshort, depap.airport_id as depid, departure_time, departure_date, arrival_date, arrival_time from flight JOIN airport as curap ON flight.destination = curap.airport_id JOIN airport as depap ON flight.departure = depap.airport_id where curap.airport_id = ? ",
+          "SELECT flight_number, curap.airport_id as curid, curap.airport_city as curcity, curap.airport_name as curname, curap.airport_state as curstate, curap.airport_short as curshort, depap.airport_name as depname, depap.airport_short as depshort, depap.airport_id as depid, departure_time, departure_date, arrival_date, arrival_time from flight JOIN airport as curap ON flight.destination = curap.airport_id JOIN airport as depap ON flight.departure = depap.airport_id where curap.airport_id = ? ",
           req.params.airport,
           function (err, result, fields) {
             if (err) {
