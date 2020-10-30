@@ -1,0 +1,304 @@
+<%- include('../partials/header') %>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 80px 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 00px -5px;
+margin-bottom: 80px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 2000px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  position: absolute;
+width: 1215px;
+height: 185px;
+left: 123px;
+/* top: 284px; */
+
+background: #FFFFFF;
+box-shadow: -5px -5px 11px rgba(113, 113, 113, 0.25), 5px 5px 11px rgba(113, 113, 113, 0.25);
+}
+.main1{
+  margin-bottom: 100px;
+}
+.flightid{
+  position: absolute;
+width: 67px;
+height: 82px;
+ left: 60px;
+top: 50px; 
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 50px;
+line-height: 82px;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+.departuredate{
+
+  position: absolute;
+width: 162px;
+height: 35px;
+left: 170px;
+top: 20px;
+
+font-family: Droid Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.photo1{
+  position: absolute;
+width: 69.5px;
+height: 21.5px;
+left: 195px;
+top: 80px;
+}
+.photo2{
+  position: absolute;
+width: 69.5px;
+height: 21.5px;
+left: 550px;
+top: 60px;
+}
+.photo3{
+   position: absolute;
+width: 69.5px;
+height: 21.5px;
+left: 955px;
+top: 80px;
+}
+
+.departuretime{
+  position: absolute;
+width: 91px;
+height: 35px;
+left: 190px;
+top: 130px;
+
+font-family: Droid Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.departuresf{
+  position: absolute;
+width: 91px;
+height: 35px;
+left: 400px;
+top: 20px;
+
+font-family: Droid Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.departurecity{
+    position: absolute;
+width: 91px;
+height: 35px;
+left: 400px;
+top: 130px;
+text-transform: capitalize;
+font-family: Droid Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 25px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.arrivalsf{
+    position: absolute;
+width: 91px;
+height: 35px;
+left: 700px;
+top: 20px;
+
+font-family: Droid Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.arrivalcity{
+  position: absolute;
+width: 91px;
+height: 35px;
+left: 700px;
+top: 130px;
+text-transform: capitalize;
+font-family: Droid Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 25px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.arrivaldate{
+  position: absolute;
+width: 162px;
+height: 35px;
+left: 930px;
+top: 20px;
+
+font-family: Droid Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+.arrivaltime{
+    position: absolute;
+width: 91px;
+height: 35px;
+left: 950px;
+top: 130px;
+
+font-family: Droid Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+}
+
+
+</style>
+</head>
+<body>
+<div class="container">
+        
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>  
+    </div>
+<script> 
+document.addEventListener("DOMContentLoaded",function(){
+    document.getElementById("loader-wrapper").remove();
+});</script>
+<style>
+    .container{margin-top:100px;
+    text-align:center}
+    .button{
+width: 235px;
+height: 98px;
+margin-top: 180px;
+border-radius: 31px;
+      }
+      .button1 {background-color: #0A96D2;margin-right: 50px;} 
+            .button2 {background-color: #0A96D2;margin-right: 50px;} 
+            .button3 {background-color: #0A96D2;}
+</style>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/searchflight">
+        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+    </a>
+    
+        <span class="navbar-text"> logged in as: crew@gmail.com <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
+        
+
+</nav>    
+         
+            
+    <div class="main1">
+        <%data.forEach(function (flight){ %>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <div class="flightid">
+      <%=flight.flight_number%></div>
+      <div class="departuredate">
+        <%=flight.departure_date.toDateString().slice(-11);%> </div>
+      <div class="photo1">
+        <img src="./images/depart.png">
+      </div>
+      <div class="departuretime">
+      <%= flight.departure_time.slice(0,5)%></div>
+      <div class="departuresf">
+        <%=flight.dep_short %></div>
+      <div class="departurecity">
+        <%=flight.dep_city %>
+      </div>
+      <div class="photo2">
+        <img src="./images/onway.png"></div>
+        <div class="arrivalsf">
+            <%=flight.des_short %>
+        </div>
+        <div class="arrivalcity">
+          <%=flight.des_city %>
+        </div>
+        <div class="arrivaldate">
+            <%=flight.arrival_date.toDateString().slice(-11);%>
+        </div>
+        <div class="photo3">
+          <img src="./images/arrive.png">
+        </div>
+        <div class="arrivaltime">
+            <%= flight.arrival_time.slice(0,5)%>
+        </div>
+
+    </div>
+  </div>
+</div>
+<% })%>
+</div>
+
+<%- include('../partials/footer') %>

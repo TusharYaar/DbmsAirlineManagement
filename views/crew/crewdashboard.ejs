@@ -1,10 +1,30 @@
 <%- include('../partials/header') %>
-    <p>This is the
-        <h2>Crew</h2> Dashboard </p>
-<hr>
-goto <a href="/assignedflights"> Assigned Flights</a>
-<hr>
-goto <a href="/showbookedflights"> Show  booked flights </a> 
-<hr> 
-goto <a href="/searchflight"> Seach flight </a>
-            <a href="/logout"> Logout</a>
+<style>
+    .container{margin-top:100px;
+    text-align:center}
+    .button{
+width: 235px;
+height: 98px;
+margin-top: 180px;
+border-radius: 31px;
+			}
+			.button1 {background-color: #0A96D2;margin-right: 50px;} 
+            .button2 {background-color: #0A96D2;margin-right: 50px;} 
+            .button3 {background-color: #0A96D2;}
+</style>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/searchflight">
+        <img src="./images/FullLogo.png" width="200" height="auto" alt="Airline Logo">
+    </a>
+        <span class="navbar-text"> logged in as: <%=currentUser %> <a href="/dashboard" class="mx-4">Dashboard</a> <a href="/logout" class ="mx-4">Logout</a>
+</nav>
+<div class="container">
+    <h1>USER DASHBOARD</h1>
+    <div class="d-flex justify-content-center">
+        <a href="/assignedflights"><button class="button button1">View Assigned Flight</button></a>
+        <a href="/searchflight"><button class="button button2">Search Flight</button></a>
+        <a href="/showbookedflights"><button class="button button2">View Book Flight</button></a>
+    </div>
+</div>
+<%- include('../partials/footer') %>
