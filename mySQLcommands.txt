@@ -85,4 +85,4 @@ where crew_id = 'U2'
 select * from userinfo 
 join bookedflight on bookedflight.userid = userinfo.userid 
 join flight on bookedflight.flight_number = flight.flight_number
-where bookedflight.flight_number = 'F3'
+where bookedflight.flight_number = 'F3';
